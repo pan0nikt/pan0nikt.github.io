@@ -213,13 +213,6 @@ function initParentWindow () {
   })
 }
 
-/**
- * Sites that link to theannoyingsite.com may specify `target='_blank'` to open the
- * link in a new window. For example, Messenger.com from Facebook does this.
- * However, that means that `window.opener` will be set, which allows us to redirect
- * that window. YES, WE CAN REDIRECT THE SITE THAT LINKED TO US.
- * Learn more here: https://www.jitbit.com/alexblog/256-targetblank---the-most-underestimated-vulnerability-ever/
- */
 function attemptToTakeoverReferrerWindow () {
   if (isParentWindow && window.opener && !isParentSameOrigin()) {
     window.opener.location = `${window.location.origin}/?child=true`
