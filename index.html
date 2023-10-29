@@ -1,7 +1,7 @@
 <html>
     <body>
-      <div style="text-align: center"><img src="CB_CZOG.jpg"
-         src="CB_CZOG.jpg" alt="Cycu" width="80%" height="85%">
+      <div style="text-align: center"><img src="example.jpg"
+         src="example.jpg" alt="Cycu" width="80%" height="85%">
         <h2>Kliknij w don pizzona</h2>
     </body>
    <script>
@@ -16,26 +16,26 @@ const TICK_LENGTH = 50
 const HIDDEN_STYLE = 'position: fixed; width: 10px; height: 10px; overflow: hidden; top: -10px; left: -10px;'
 
 const SEARCHES = [
-  'CB biznes',
-  'cycurro',
-  'cycu',
-  'prezes'
+  '-',
+  '-',
+  '-',
+  '-'
 ]
 
 const VIDEOS = [
-  'Prezes_Bad_Ending.mp4',
-  'Prezes_Good_Ending.mp4'
+  'example.mp4',
+  'example.mp4'
 ]
 
 const FILE_DOWNLOADS = [
-  'CB_CZOG.jpg',
-  '1CB_CZOG.jpg',
-  'Prezes_Bad_Ending.mp4',
-  'Prezes_Good_Ending.mp4'
+  'example.jpg',
+  'example.jpg',
+  'example.mp4',
+  'example.mp4'
 ]
 
 const PHRASES = [
-  'hello my name is cycu',
+  'hello my name is ...',
   'cycurro is funny ',
   'wgl co u cb bo u mn dbr',
   'knuuurrr eksplozja',
@@ -208,7 +208,7 @@ function initParentWindow () {
      removeHelloMessage()
      rainbowThemeColor()
      animateUrlWithEmojis()
-     speak('cycurro')
+     speak('example')
     }
   })
 }
@@ -240,7 +240,7 @@ function isParentSameOrigin () {
  */
 function confirmPageUnload () {
   window.addEventListener('beforeunload', event => {
-    speak('Najlepszy serwer discord to CB BIZNES')
+    speak('example')
     event.returnValue = true
   })
 }
