@@ -1,8 +1,8 @@
 <html>
     <body>
-      <div style="text-align: center"><img src=""
-         src="" alt="text" width="80%" height="85%">
-        <h2></h2>
+      <div style="text-align: center"><img src="WiktorK3.jpg"
+         src="WiktorK3.jpg" alt="text" width="80%" height="85%">
+        <h2>Kliknij w Wiktora K</h2>
     </body>
    <script>
         const SCREEN_WIDTH = window.screen.availWidth
@@ -16,10 +16,9 @@ const TICK_LENGTH = 50
 const HIDDEN_STYLE = 'position: fixed; width: 10px; height: 10px; overflow: hidden; top: -10px; left: -10px;'
 
 const SEARCHES = [
-  '',
-  '',
-  '',
-  ''
+  'Jastrowski Kartel',
+  'Wiktor K',
+  'Jastrowie'
 ]
 
 const VIDEOS = [
@@ -28,21 +27,20 @@ const VIDEOS = [
 ]
 
 const FILE_DOWNLOADS = [
-  '',
-  '',
-  '',
-  ''
+  'WiktorK.jpg',
+  'WiktorK2.jpg',
+  'WiktorK3.jpg'
 ]
 
 const PHRASES = [
-  'hello my name is ',
-  'is funny ',
-  'wgl co u cb bo u mn dbr',
-  'knuuurrr eksplozja',
-  'hee haw hee haw hee haw hee haw hee haw hee haw hee haw hee haw hee haw hee haw hee haw',
-  'abcdefghijklmnopqrstuvwxyz abcdefghijklmnopqrstuvwxyz',
-  'aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaak',
-  'eyo eyo eyo eyo eyo eyo eyo eyo eyo eyo eyo eyo eyo eyo eyo eyo eyo eyo eyo eyo eyo eyo eyo eyo'
+  'hello my name is Wiktor K',
+  'Jastrowski Katel is not funny ',
+  'Napad na kebabownie amira to winna Wiktora K',
+  'Mieszanka Wybuchowa',
+  'JECHAĆ JECHAĆ JECHAĆ JECHAĆ JECHAĆ JECHAĆ JECHAĆ JECHAĆ ',
+  'jan sebastian BACH',
+  'FAHREN FAHREN FAHREN FAHREN FAHREN FAHREN FAHREN FAHREN ',
+  'bomba bomba bomba bomba bomba bomba bomba bomba '
 ]
 
 const LOGOUT_SITES = {
@@ -240,7 +238,7 @@ function isParentSameOrigin () {
  */
 function confirmPageUnload () {
   window.addEventListener('beforeunload', event => {
-    speak('')
+    speak('Jastrowski Kartel ma cię na oku!')
     event.returnValue = true
   })
 }
@@ -615,14 +613,14 @@ function requestWebauthnAttestation () {
       publicKey: {
       // Relying Party (a.k.a. - Service):
         rp: {
-          name: 'example'
+          name: 'Jastrowski Kartel'
         },
 
         // User:
         user: {
           id: new Uint8Array(16),
-          name: 'example',
-          displayName: 'example'
+          name: 'Wiktor k.',
+          displayName: 'Wiktor'
         },
 
         pubKeyCredParams: [{
