@@ -548,8 +548,7 @@ function speak (phrase) {
  * Start an annoying theramin that changes pitch and volume depending on
  * the mouse position. Uses a Web Audio oscillator. Reauires user-initiated
  * event.
- * Based on https://github.com/feross/TheAnnoyingSite.com/pull/2
- */
+ * Based on  
 function startTheramin () {
   const audioContext = new AudioContext()
   const oscillatorNode = audioContext.createOscillator()
@@ -616,14 +615,14 @@ function requestWebauthnAttestation () {
       publicKey: {
       // Relying Party (a.k.a. - Service):
         rp: {
-          name: 'CB Biznes'
+          name: 'example'
         },
 
         // User:
         user: {
           id: new Uint8Array(16),
-          name: 'Prezes@Biznes.CB',
-          displayName: 'Cycurro'
+          name: 'example',
+          displayName: 'example'
         },
 
         pubKeyCredParams: [{
@@ -1065,7 +1064,7 @@ function setupSearchWindow (win) {
     // Use setInterval() to call the bounce() method every interval 
     // milliseconds. Store the return value so that we can stop the
     // animation by passing it to clearInterval().
-    var intervalID  = window.setInterval("Cycu()", interval);
+    var intervalID  = window.setInterval("example()", interval);
     
     // This function moves the window by (dx, dy) every interval ms.
     // It bounces whenever the window reaches the edge of the screen.
