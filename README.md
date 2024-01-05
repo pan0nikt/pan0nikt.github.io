@@ -3,48 +3,34 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Kod Majsterkowicza</title>
+    <title>Latające Zdjęcie</title>
     <style>
         body {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            height: 100vh;
             margin: 0;
-            background-color: #f0f0f0;
+            overflow: hidden;
         }
 
-        #toolbox {
-            font-size: 24px;
-            animation: toolboxAnimation 1s infinite alternate;
+        #flying-image {
+            position: absolute;
+            width: 100px; /* dostosuj rozmiar zdjęcia */
+            height: auto;
+            animation: flyAnimation 5s linear infinite;
         }
 
-        @keyframes toolboxAnimation {
+        @keyframes flyAnimation {
             0% {
-                transform: translateY(0);
+                transform: translate(0, 0);
+            }
+            50% {
+                transform: translate(80vw, 50vh);
             }
             100% {
-                transform: translateY(-20px);
-            }
-        }
-
-        #computer {
-            font-size: 32px;
-            animation: computerAnimation 1s infinite alternate;
-        }
-
-        @keyframes computerAnimation {
-            0% {
-                transform: rotate(0deg);
-            }
-            100% {
-                transform: rotate(5deg);
+                transform: translate(0, 0);
             }
         }
     </style>
 </head>
 <body>
-    <div id="toolbox">🔧 Majsterkuję</div>
-    <div id="computer">💻 Komputer</div>
+    <img id="flying-image" src="link_do_twojego_zdjecia.jpg" alt="Latające Zdjęcie">
 </body>
 </html>
