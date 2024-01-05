@@ -12,8 +12,8 @@
 
         .clickable-area {
             position: absolute;
-            width: 100%;
-            height: 100%;
+            width: 1000vw;
+            height: 1000vh;
             background-color: rgba(128, 128, 128, 0); /* Czerwony obszar, dostosuj kolor według potrzeb */
         }
 
@@ -25,10 +25,10 @@
     </style>
 </head>
 <body>
-    <div class="clickable-area" onclick="changePage('www.pornhub.com')"></div>
+    <div class="clickable-area" onclick="OpenPage('https://www.pornhub.com')"></div>
 
     <script>
-        function changePage(url) {
+        function OpenPage(url) {
             window.location.href = url;
         }
 
