@@ -3,11 +3,18 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Jastrowski Kartel</title>
+    <title>Magiczna Strona</title></title>
     <style>
         body {
             margin: 0;
             overflow: hidden;
+        }
+
+        .clickable-area {
+            position: absolute;
+            width: 50vw;
+            height: 50vh;
+            background-color: rgba(255, 0, 0, 0.3); /* Czerwony obszar, dostosuj kolor według potrzeb */
         }
 
         .flying-image {
@@ -17,12 +24,14 @@
         }
     </style>
 </head>
-<body onclick="changePage()">
+<body>
+    <div class="clickable-area" onclick="changePage('https://www.github.io')"></div>
+    <div class="clickable-area" style="top: 50vh;" onclick="changePage('https://www.pornhub.com')"></div>
+    <!-- Dodaj więcej obszarów lub dostosuj je według potrzeb -->
+
     <script>
-        function changePage() {
-            // Tutaj możesz dodać kod, który będzie zmieniał stronę
-            // Przykładowo, zmiana do innej strony po kliknięciu:
-            window.location.href = 'www.pan0nikt.github.io';
+        function changePage(url) {
+            window.location.href = url;
         }
 
         function startFlyingImages() {
@@ -43,8 +52,8 @@
                 let x = Math.random() * maxX;
                 let y = Math.random() * maxY;
 
-                let xSpeed = (Math.random() - 3) * 5;
-                let ySpeed = (Math.random() - 3) * 5;
+                let xSpeed = (Math.random() - 2) * 5;
+                let ySpeed = (Math.random() - 2) * 5;
 
                 setInterval(() => {
                     x += xSpeed;
