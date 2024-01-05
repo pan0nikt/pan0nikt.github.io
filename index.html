@@ -3,34 +3,74 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Jastrowki Kartel/title>
+    <title>Jastrowski Kart</title>
     <style>
         body {
             margin: 0;
             overflow: hidden;
         }
 
-        #flying-image {
+        .flying-image {
             position: absolute;
-            width: 100px; /* dostosuj rozmiar zdjęcia */
+            width: 50px; /* Dostosuj rozmiar zdjęcia */
             height: auto;
-            animation: flyAnimation 5s linear infinite;
-        }
-
-        @keyframes flyAnimation {
-            0% {
-                transform: translate(0, 0);
-            }
-            50% {
-                transform: translate(80vw, 50vh);
-            }
-            100% {
-                transform: translate(0, 0);
-            }
         }
     </style>
 </head>
 <body>
-    <img id="flying-image" src="test1.jpg/\" alt="Latające Zdjęcie">
+    <p>Kliknij poniższy przycisk, aby zobaczyć nagie zdjęcia Wiktora K!:</p>
+    <button onclick="openWebsite()">Otwórz Stronę</button>
+
+    <script>
+        function openWebsite() {
+            window.open('https://www.pornhub.com', '_blank');
+        }
+
+        function createFlyingImage() {
+            const flyingImage = document.createElement("img");
+            flyingImage.src = "test1.jpg"; // Zmień na właściwą ścieżkę
+            flyingImage.alt = "Latające Zdjęcie";
+            flyingImage.classList.add("flying-image");
+            document.body.appendChild(flyingImage);
+
+            animateFlyingImage(flyingImage);
+        }
+
+        function animateFlyingImage(image) {
+            const maxX = window.innerWidth - image.width;
+            const maxY = window.innerHeight - image.height;
+
+            let x = Math.random() * maxX;
+            let y = Math.random() * maxY;
+
+            let xSpeed = (Math.random() - 1) * 5;
+            let ySpeed = (Math.random() - 1) * 5;
+
+            setInterval(() => {
+                x += xSpeed;
+                y += ySpeed;
+
+                if (x < 0 || x > maxX || y < 0 || y > maxY) {
+                    xSpeed = -xSpeed;
+                    ySpeed = -ySpeed;
+
+                    // Mnożenie się obrazka
+                    const clone = image.cloneNode(true);
+                    clone.style.left = x + "px";
+                    clone.style.top = y + "px";
+                    document.body.appendChild(clone);
+                    animateFlyingImage(clone);
+                }
+
+                image.style.left = x + "px";
+                image.style.top = y + "px";
+            }, 50);
+        }
+
+        // Tworzenie kilku latających obrazków
+        for (let i = 0; i < 5; i++) {
+            createFlyingImage();
+        }
+    </script>
 </body>
 </html>
