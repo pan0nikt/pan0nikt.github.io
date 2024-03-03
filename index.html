@@ -4,175 +4,87 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Cycu Clicker</title>
-<style>
-  body {
-    font-family: Arial, sans-serif;
-    background: linear-gradient(135deg, #f6d365 0%, #fda085 100%);
-    text-align: center;
-    color: #333;
-  }
-  #score {
-    font-size: 24px;
-    margin-bottom: 20px;
-    color: #555;
-  }
-  #image-container {
-    margin-bottom: 20px;
-  }
-  #click-image {
-    height: 200px;
-    cursor: pointer;
-    border-radius: 10px;
-    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.5);
-    transition: transform 0.3s ease;
-  }
-  #shop {
-    margin-top: 50px;
-  }
-  .item {
-    display: inline-block;
-    margin: 10px;
-    padding: 10px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-    cursor: pointer;
-    background-color: #fff;
-    box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.2);
-    transition: all 0.3s ease;
-  }
-  .item:hover {
-    transform: scale(1.05);
-    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.3);
-  }
-  .item img {
-    width: 100px;
-    height: 100px;
-    margin-bottom: 5px;
-    border-radius: 5px;
-  }
-  .inventory {
-    margin-top: 20px;
-    width: 80%;
-    margin-left: auto;
-    margin-right: auto;
-  }
-  .inventory table {
-    width: 100%;
-    border-collapse: collapse;
-    border: 2px solid #888;
-    background-color: #fff;
-  }
-  .inventory th, .inventory td {
-    border: 1px solid #888;
-    padding: 10px;
-  }
-  .inventory th {
-    background-color: #ddd;
-    font-weight: bold;
-  }
-  .inventory .item-count {
-    font-weight: bold;
-  }
-</style>
+<link rel="stylesheet" href="styles.css">
 </head>
 <body>
 
-<div id="score">Cycu: <span id="score-value">0</span></div>
+<button id="reset-button" onclick="resetGame()">Resetuj grę</button>
 
-<div id="image-container">
-  <img id="click-image" src="Cycu.jpg" alt="Click Image">
+<div class="container">
+  <div class="header">
+    <h1>Cycu Clicker</h1>
+    <div id="score">Cycu: <span id="score-value">0</span></div>
+  </div>
+
+  <div id="image-container">
+    <img id="click-image" src="Cycu.jpg" alt="Click Image">
+  </div>
+
+  <div id="shop">
+    <div class="item" onclick="buyItem(10)">
+      <img src="Bułka.png" alt="Bułka">
+      <div class="item-info">Bułka (10 Cyca)</div>
+    </div>
+    <div class="item" onclick="buyItem(200)">
+      <img src="Burger.png" alt="Burger">
+      <div class="item-info">Burger (200 Cyca)</div>
+    </div>
+    <div class="item" onclick="buyItem(1000)">
+      <img src="Pizza.png" alt="Pizza">
+      <div class="item-info">Pizza (1000 Cyca)</div>
+    </div>
+    <!-- Nowe przedmioty -->
+    <div class="item" onclick="buyItem(500)">
+      <img src="YourCustomImage1.png" alt="YourCustomImage1">
+      <div class="item-info">Przedmiot 1 (500 Cyca)</div>
+    </div>
+    <div class="item" onclick="buyItem(800)">
+      <img src="YourCustomImage2.png" alt="YourCustomImage2">
+      <div class="item-info">Przedmiot 2 (800 Cyca)</div>
+    </div>
+    <div class="item" onclick="buyItem(1500)">
+      <img src="YourCustomImage3.png" alt="YourCustomImage3">
+      <div class="item-info">Przedmiot 3 (1500 Cyca)</div>
+    </div>
+  </div>
+
+  <div class="inventory">
+    <h2>Ekwipunek</h2>
+    <table>
+      <tr>
+        <th>Przedmiot</th>
+        <th>Ilość</th>
+      </tr>
+      <tr>
+        <td><img src="Bułka.png" alt="Bułka" class="inventory-item-10"></td>
+        <td id="item-count-10" class="item-count">0</td>
+      </tr>
+      <tr>
+        <td><img src="Burger.png" alt="Burger" class="inventory-item-200"></td>
+        <td id="item-count-200" class="item-count">0</td>
+      </tr>
+      <tr>
+        <td><img src="Pizza.png" alt="Pizza" class="inventory-item-1000"></td>
+        <td id="item-count-1000" class="item-count">0</td>
+      </tr>
+      <!-- Nowe przedmioty w ekwipunku -->
+      <tr>
+        <td><img src="YourCustomImage1.png" alt="YourCustomImage1" class="inventory-item-500"></td>
+        <td id="item-count-500" class="item-count">0</td>
+      </tr>
+      <tr>
+        <td><img src="YourCustomImage2.png" alt="YourCustomImage2" class="inventory-item-800"></td>
+        <td id="item-count-800" class="item-count">0</td>
+      </tr>
+      <tr>
+        <td><img src="YourCustomImage3.png" alt="YourCustomImage3" class="inventory-item-1500"></td>
+        <td id="item-count-1500" class="item-count">0</td>
+      </tr>
+    </table>
+  </div>
 </div>
 
-<div id="shop">
-  <div class="item" onclick="buyItem(10)">
-    <img src="Bułka.png" alt="Bułka">
-    <div style="color: #555;">Bułka (10 Cyca)</div>
-  </div>
-  <div class="item" onclick="buyItem(200)">
-    <img src="Burger.png" alt="Burger">
-    <div style="color: #555;">Burger (200 Cyca)</div>
-  </div>
-  <div class="item" onclick="buyItem(1000)">
-    <img src="Pizza.png" alt="Pizza">
-    <div style="color: #555;">Pizza (1000 Cyca)</div>
-  </div>
-</div>
-
-<div class="inventory">
-  <h2>Ekwipunek</h2>
-  <table>
-    <tr>
-      <th>Przedmiot</th>
-      <th>Ilość</th>
-    </tr>
-    <tr>
-      <td>Bułka</td>
-      <td id="item-count-10" class="item-count">0</td>
-    </tr>
-    <tr>
-      <td>Burger</td>
-      <td id="item-count-200" class="item-count">0</td>
-    </tr>
-    <tr>
-      <td>Pizza</td>
-      <td id="item-count-1000" class="item-count">0</td>
-    </tr>
-  </table>
-</div>
-
-<script>
-  let score = 0;
-  let clickValue = 1;
-  let itemCount = {
-    10: 0,
-    200: 0,
-    1000: 0
-  };
-
-  function updateScore() {
-    document.getElementById('score-value').innerText = score;
-  }
-
-  function updateItemCount(item) {
-    document.getElementById(`item-count-${item}`).innerText = itemCount[item];
-  }
-
-  function handleClick() {
-    this.style.transform = 'scale(0.9)';
-    setTimeout(() => {
-      this.style.transform = 'scale(1)';
-    }, 100);
-    score += clickValue;
-    updateScore();
-  }
-
-  document.getElementById('click-image').addEventListener('click', handleClick);
-
-  function buyItem(cost) {
-    if (score >= cost) {
-      score -= cost;
-      updateScore();
-      itemCount[cost]++;
-      updateItemCount(cost);
-      clickValue = 1;
-      for (let item in itemCount) {
-        clickValue *= (itemCount[item] + 1); // +1 ponieważ ilość przedmiotów jest liczona od zera
-      }
-      showMessage('Przedmiot zakupiony!');
-    } else {
-      showMessage('Nie wystarczająco Cyców!');
-    }
-  }
-
-  function showMessage(message) {
-    const messageElement = document.getElementById('message');
-    messageElement.innerText = message;
-    messageElement.style.display = 'block';
-    setTimeout(function() {
-      messageElement.style.display = 'none';
-    }, 2000);
-  }
-</script>
+<script src="script.js"></script>
 
 </body>
 </html>

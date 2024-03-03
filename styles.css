@@ -1,0 +1,144 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f6f6f6;
+  }
+  
+  .container {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+    background-color: #fff;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  }
+  
+  .header {
+    text-align: center;
+    margin-bottom: 20px;
+  }
+  
+  h1 {
+    margin-top: 0;
+    color: #333;
+  }
+  
+  #reset-button {
+    display: block;
+    margin-bottom: 20px;
+    padding: 10px 20px;
+    background-color: #ff6b6b;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+    transition: background-color 0.3s ease;
+  }
+  
+  #reset-button:hover {
+    background-color: #ff5252;
+  }
+  
+  #score {
+    font-size: 24px;
+    margin-bottom: 20px;
+    color: #555;
+  }
+  
+  #image-container {
+    text-align: center;
+    margin-bottom: 20px;
+  }
+  
+  #click-image {
+    height: 200px;
+    cursor: pointer;
+    border-radius: 10px;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.5);
+    transition: transform 0.3s ease, width 0.3s ease;
+  }
+  
+  #shop {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 20px;
+  }
+  
+  .item {
+    flex: 0 1 calc(33.33% - 20px);
+    padding: 10px;
+    border-radius: 5px;
+    background-color: #fff;
+    box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.2);
+    cursor: pointer;
+    transition: all 0.3s ease;
+  }
+  
+  .item:hover {
+    transform: translateY(-5px);
+    box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.3);
+  }
+  
+  .item img {
+    display: block;
+    margin: 0 auto;
+    width: 100px;
+    height: 100px;
+    border-radius: 5px;
+  }
+  
+  .item-info {
+    text-align: center;
+    color: #555;
+  }
+  
+  .inventory {
+    margin-top: 20px;
+  }
+  
+  .inventory table {
+    width: 100%;
+    border-collapse: collapse;
+    border: 2px solid #888;
+    background-color: #fff;
+  }
+  
+  .inventory th,
+  .inventory td {
+    border: 1px solid #888;
+    padding: 10px;
+  }
+  
+  .inventory th {
+    background-color: #ddd;
+    font-weight: bold;
+  }
+  
+  .inventory .item-count {
+    font-weight: bold;
+  }
+  
+  .item-animation {
+    animation: item-bought 1s ease;
+  }
+  
+  @keyframes item-bought {
+    0% {
+      transform: translateY(-20px);
+      opacity: 0;
+    }
+    100% {
+      transform: translateY(0);
+      opacity: 1;
+    }
+  }
+  
+  @media screen and (max-width: 600px) {
+    #shop .item {
+      flex: 0 1 calc(50% - 20px);
+    }
+  }
+  
