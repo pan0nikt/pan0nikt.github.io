@@ -50,31 +50,40 @@
 <div id="shop">
   <div class="item" onclick="buyItem(10)">
     <img src="Bułka.png" alt="Bułka">
-    <div>Bułka (10 Cycu)</div>
+    <div>Bułka (10 Cyca)</div>
   </div>
   <div class="item" onclick="buyItem(50)">
     <img src="Burger.png" alt="Burger">
-    <div>Burger (50 Cycu)</div>
+    <div>Burger (50 Cyca)</div>
   </div>
   <div class="item" onclick="buyItem(100)">
     <img src="Pizza.png" alt="Pizza">
-    <div>Pizza (100 Cycu)</div>
+    <div>Pizza (100 Cyca)</div>
   </div>
 </div>
 
 <script>
+  let score = 0;
+
+  function updateScore() {
+    document.getElementById('score-value').innerText = score;
+  }
+
+  function handleClick() {
+    score++;
+    updateScore();
+  }
+
   // Add click event listener to the image
   document.getElementById('click-image').addEventListener('click', handleClick);
 
-  // Function to handle buying items
   function buyItem(cost) {
     if (score >= cost) {
       score -= cost;
       updateScore();
-      // Add code here to grant item purchased by the player
       alert('Przedmiot zakupiony!');
     } else {
-      alert('Nie wystarczającu Cyca!');
+      alert('Nie wystarczający Cyców!');
     }
   }
 </script>
