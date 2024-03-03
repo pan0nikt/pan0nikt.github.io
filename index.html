@@ -67,6 +67,8 @@
 </head>
 <body>
 
+<audio id="purchase-sound" src="purchase_sound.mp3" preload="auto"></audio>
+
 <div id="score">Cycu: <span id="score-value">0</span></div>
 
 <div id="image-container">
@@ -78,13 +80,13 @@
     <img src="Bułka.png" alt="Bułka">
     <div style="color: #555;">Bułka (10 Cyca)</div>
   </div>
-  <div class="item" onclick="buyItem(500)">
+  <div class="item" onclick="buyItem(200)">
     <img src="Burger.png" alt="Burger">
-    <div style="color: #555;">Burger (500 Cyca)</div>
+    <div style="color: #555;">Burger (200 Cyca)</div>
   </div>
-  <div class="item" onclick="buyItem(2000)">
+  <div class="item" onclick="buyItem(1000)">
     <img src="Pizza.png" alt="Pizza">
-    <div style="color: #555;">Pizza (2000 Cyca)</div>
+    <div style="color: #555;">Pizza (1000 Cyca)</div>
   </div>
 </div>
 
@@ -115,12 +117,13 @@
       updateScore();
       if (cost === 10) {
         clickValue = 2;
-      } else if (cost === 50) {
+      } else if (cost === 200) {
         clickValue = 5;
-      } else if (cost === 100) {
+      } else if (cost === 1000) {
         clickValue = 10;
       }
       showMessage('Przedmiot zakupiony!');
+      playPurchaseSound(); // Dodanie efektu dźwiękowego
     } else {
       showMessage('Nie wystarczająco Cyców!');
     }
@@ -133,6 +136,11 @@
     setTimeout(function() {
       messageElement.style.display = 'none';
     }, 2000);
+  }
+
+  function playPurchaseSound() {
+    const audio = document.getElementById('purchase-sound');
+    audio.play();
   }
 </script>
 
