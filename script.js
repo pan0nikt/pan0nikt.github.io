@@ -1,5 +1,4 @@
-
-// Function to handle sending a message
+<script></script>
 function sendMessage() {
     const messageInput = document.getElementById('message-input');
     const message = messageInput.value.trim();
