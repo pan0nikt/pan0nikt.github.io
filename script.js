@@ -1,5 +1,4 @@
-<script></script>
-function sendMessage() {
+    function sendMessage() {
     const messageInput = document.getElementById('message-input');
     const message = messageInput.value.trim();
     if (message !== '') {
