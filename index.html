@@ -9,11 +9,12 @@
     font-family: Arial, sans-serif;
     background-color: #f0f0f0;
     text-align: center;
+    color: #333;
   }
   #score {
     font-size: 24px;
     margin-bottom: 20px;
-    color: #333;
+    color: #555;
   }
   #image-container {
     margin-bottom: 20px;
@@ -24,6 +25,7 @@
     cursor: pointer;
     border-radius: 10px;
     box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.5);
+    transition: transform 0.3s ease;
   }
   #shop {
     margin-top: 50px;
@@ -37,6 +39,11 @@
     cursor: pointer;
     background-color: #fff;
     box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.2);
+    transition: all 0.3s ease;
+  }
+  .item:hover {
+    transform: scale(1.05);
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.3);
   }
   .item img {
     width: 100px;
@@ -49,7 +56,7 @@
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    background-color: rgba(255, 255, 255, 0.8);
+    background-color: rgba(255, 255, 255, 0.9);
     padding: 20px;
     border-radius: 10px;
     z-index: 999;
@@ -69,15 +76,15 @@
 <div id="shop">
   <div class="item" onclick="buyItem(10)">
     <img src="Bułka.png" alt="Bułka">
-    <div>Bułka (10 Cyca)</div>
+    <div style="color: #555;">Bułka (10 Cyca)</div>
   </div>
-  <div class="item" onclick="buyItem(50)">
+  <div class="item" onclick="buyItem(500)">
     <img src="Burger.png" alt="Burger">
-    <div>Burger (50 Cyca)</div>
+    <div style="color: #555;">Burger (500 Cyca)</div>
   </div>
-  <div class="item" onclick="buyItem(100)">
+  <div class="item" onclick="buyItem(2000)">
     <img src="Pizza.png" alt="Pizza">
-    <div>Pizza (100 Cyca)</div>
+    <div style="color: #555;">Pizza (2000 Cyca)</div>
   </div>
 </div>
 
@@ -92,11 +99,14 @@
   }
 
   function handleClick() {
+    this.style.transform = 'scale(0.9)'; // Skalowanie obrazka przy kliknięciu
+    setTimeout(() => {
+      this.style.transform = 'scale(1)'; // Przywrócenie oryginalnego rozmiaru
+    }, 100); // Czas trwania animacji w milisekundach
     score += clickValue;
     updateScore();
   }
 
-  // Add click event listener to the image
   document.getElementById('click-image').addEventListener('click', handleClick);
 
   function buyItem(cost) {
@@ -112,7 +122,7 @@
       }
       showMessage('Przedmiot zakupiony!');
     } else {
-      showMessage('Nie wystarczający Cyców!');
+      showMessage('Nie wystarczająco Cyców!');
     }
   }
 
@@ -122,7 +132,7 @@
     messageElement.style.display = 'block';
     setTimeout(function() {
       messageElement.style.display = 'none';
-    }, 1000); // Hide message after 2 seconds
+    }, 2000);
   }
 </script>
 
