@@ -86,11 +86,6 @@
 <script>
   let score = 0;
   let clickValue = 1;
-  let itemsBought = {
-    'Bułka': 0,
-    'Burger': 0,
-    'Pizza': 0
-  };
 
   function updateScore() {
     document.getElementById('score-value').innerText = score;
@@ -110,26 +105,14 @@
       updateScore();
       if (cost === 10) {
         clickValue = 2;
-        itemsBought['Bułka']++;
-        if (itemsBought['Bułka'] >= 2) {
-          clickValue *= 2;
-        }
       } else if (cost === 50) {
         clickValue = 5;
-        itemsBought['Burger']++;
-        if (itemsBought['Burger'] >= 2) {
-          clickValue *= 5;
-        }
       } else if (cost === 100) {
         clickValue = 10;
-        itemsBought['Pizza']++;
-        if (itemsBought['Pizza'] >= 2) {
-          clickValue *= 10;
-        }
       }
       showMessage('Przedmiot zakupiony!');
     } else {
-      showMessage('Nie wystarczająco Cyców!');
+      showMessage('Nie wystarczający Cyców!');
     }
   }
 
@@ -139,7 +122,7 @@
     messageElement.style.display = 'block';
     setTimeout(function() {
       messageElement.style.display = 'none';
-    }, 2000); // Hide message after 2 seconds
+    }, 1000); // Hide message after 2 seconds
   }
 </script>
 
