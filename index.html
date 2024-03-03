@@ -10,6 +10,7 @@
     background: linear-gradient(135deg, #f6d365 0%, #fda085 100%);
     text-align: center;
     color: #333;
+    position: relative; /* Dodane dla pozycjonowania figur */
   }
   #score {
     font-size: 24px;
@@ -65,8 +66,8 @@
   }
   /* Dodatkowe style dla figur geometrycznych */
   .circle {
-    width: 100px;
-    height: 100px;
+    width: 80px;
+    height: 80px;
     background-color: #6c5b7b;
     border-radius: 50%;
     position: absolute;
@@ -90,6 +91,34 @@
     position: absolute;
     top: 60%;
     left: 30%;
+  }
+  /* Dodatkowe style dla dodatkowych figur geometrycznych */
+  .circle-2 {
+    width: 120px;
+    height: 120px;
+    background-color: #ff6b6b;
+    border-radius: 50%;
+    position: absolute;
+    top: 70%;
+    left: 20%;
+  }
+  .rectangle-2 {
+    width: 90px;
+    height: 60px;
+    background-color: #f4d35e;
+    position: absolute;
+    top: 20%;
+    left: 50%;
+  }
+  .triangle-2 {
+    width: 0;
+    height: 0;
+    border-left: 40px solid transparent;
+    border-right: 40px solid transparent;
+    border-bottom: 80px solid #6c5b7b;
+    position: absolute;
+    top: 40%;
+    left: 80%;
   }
 </style>
 </head>
@@ -124,6 +153,9 @@
 <div class="circle"></div>
 <div class="rectangle"></div>
 <div class="triangle"></div>
+<div class="circle-2"></div>
+<div class="rectangle-2"></div>
+<div class="triangle-2"></div>
 
 <script>
   let score = 0;
