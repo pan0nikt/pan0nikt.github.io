@@ -53,6 +53,9 @@
   }
   .inventory {
     margin-top: 20px;
+    width: 80%;
+    margin-left: auto;
+    margin-right: auto;
   }
   .inventory table {
     width: 100%;
@@ -75,7 +78,10 @@
 </head>
 <body>
 
-<audio id="purchase-sound" src="purchase_sound.mp3" preload="auto"></audio>
+<audio id="purchase-sound" preload="auto">
+  <source src="purchase_sound.mp3" type="audio/mpeg">
+  Your browser does not support the audio element.
+</audio>
 
 <div id="score">Cycu: <span id="score-value">0</span></div>
 
@@ -155,13 +161,7 @@
       itemCount[cost]++;
       updateItemCount(cost);
       stackItems();
-      if (cost === 10) {
-        clickValue = 2;
-      } else if (cost === 200) {
-        clickValue = 5;
-      } else if (cost === 1000) {
-        clickValue = 10;
-      }
+      clickValue *= itemCount[cost]; // Mnożenie ilości przedmiotu przez clickValue
       showMessage('Przedmiot zakupiony!');
       playPurchaseSound();
     } else {
