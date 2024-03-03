@@ -10,6 +10,8 @@
     background: linear-gradient(135deg, #f6d365 0%, #fda085 100%);
     text-align: center;
     color: #333;
+    margin: 0;
+    padding: 0;
   }
 
   #score {
@@ -29,9 +31,12 @@
   }
   #shop {
     margin-top: 50px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 20px;
   }
   .item {
-    display: inline-block;
     margin: 10px;
     padding: 10px;
     border: 1px solid #ccc;
@@ -56,6 +61,8 @@
     width: 80%;
     margin-left: auto;
     margin-right: auto;
+    max-height: 500px;
+    overflow: auto;
   }
   .inventory table {
     width: 100%;
@@ -195,7 +202,7 @@
 
   function updateClickImageWidth() {
     const clickImage = document.getElementById('click-image');
-    const maxWidth = 40000; 
+    const maxWidth = 5000; 
     const minWidth = 200; 
     const widthIncrement = 50; 
 
