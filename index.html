@@ -1,32 +1,86 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="stylesheet" href="style.css">
-  <title>Jastrowski Kartel</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Live Chat</title>
+<style>
+    body {
+        font-family: Arial, sans-serif;
+        margin: 0;
+        padding: 0;
+        background-color: #f0f0f0;
+    }
+    #chat-container {
+        width: 400px;
+        margin: 50px auto;
+        background-color: #fff;
+        border-radius: 10px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        padding: 20px;
+    }
+    #chat-messages {
+        height: 300px;
+        overflow-y: scroll;
+        margin-bottom: 10px;
+        padding: 10px;
+        border-radius: 5px;
+        background-color: #f9f9f9;
+    }
+    #message-input {
+        width: calc(100% - 20px);
+        padding: 8px;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+    }
+    #send-btn {
+        width: 100%;
+        padding: 8px;
+        margin-top: 5px;
+        background-color: #4caf50;
+        color: #fff;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+    }
+</style>
 </head>
-
 <body>
-  <header>
-    <h1>Jastrowski Kartel</h1>
-  </header>
-  <div class="container">
-    <div class="chat-window">
-      <div class="chat-area">
-        <div class="chat-messages">
-          <!-- Wiadomości -->
-        </div>
-      </div>
-      <div class="user-input">
-        <input type="text" id="message-input" placeholder="Napisz swoją wiadomość...">
-        <button id="send-button">Wyślij</button>
-      </div>
-    </div>
-  </div>
 
-  <script data-two_delay_id="two_65e3cc7011c16" data-two_delay_src="script.js"></script>
+<div id="chat-container">
+    <div id="chat-messages"></div>
+    <input type="text" id="message-input" placeholder="Type your message...">
+    <button id="send-btn">Send</button>
+</div>
+
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script>
+    $(document).ready(function(){
+        // Funkcja dodająca wiadomość do czatu
+        function addMessage(message, sender) {
+            var messageDiv = '<div><strong>' + sender + ': </strong>' + message + '</div>';
+            $('#chat-messages').append(messageDiv);
+        }
+
+        // Nasłuchuj kliknięcia przycisku "Send"
+        $('#send-btn').click(function(){
+            var message = $('#message-input').val();
+            if (message !== '') {
+                addMessage(message, 'Me');
+                // Tutaj można wysłać wiadomość do serwera lub innego użytkownika
+                // W tym przykładzie zakładamy, że po kliknięciu "Send" wiadomość jest dodawana do czatu
+                $('#message-input').val('');
+            }
+        });
+
+        // Nasłuchuj wciśnięcia klawisza "Enter" na polu input
+        $('#message-input').keypress(function(event){
+            if (event.which === 13) { // 13 to kod klawisza "Enter"
+                $('#send-btn').click();
+            }
+        });
+    });
+</script>
+
 </body>
-
 </html>
