@@ -144,17 +144,14 @@
     <div style="color: #555;">Pizza (1000 Cyca)</div>
   </div>
  
+  <!-- Nowe przedmioty -->
   <div class="item" onclick="buyItem(500)">
-    <img src="YourCustomImage1.png" alt="YourCustomImage1">
-    <div style="color: #555;">Przedmiot 1 (500 Cyca)</div>
+    <img src="NowyPrzedmiot1.png" alt="NowyPrzedmiot1">
+    <div style="color: #555;">Nowy Przedmiot 1 (500 Cyca)</div>
   </div>
   <div class="item" onclick="buyItem(800)">
-    <img src="YourCustomImage2.png" alt="YourCustomImage2">
-    <div style="color: #555;">Przedmiot 2 (800 Cyca)</div>
-  </div>
-  <div class="item" onclick="buyItem(1500)">
-    <img src="YourCustomImage3.png" alt="YourCustomImage3">
-    <div style="color: #555;">Przedmiot 3 (1500 Cyca)</div>
+    <img src="NowyPrzedmiot2.png" alt="NowyPrzedmiot2">
+    <div style="color: #555;">Nowy Przedmiot 2 (800 Cyca)</div>
   </div>
 </div>
 
@@ -175,20 +172,16 @@
     <div class="inventory-item-name">Pizza</div>
     <div class="inventory-item-count" id="item-count-1000">0</div>
   </div>
+  <!-- Nowe przedmioty w ekwipunku -->
   <div class="inventory-item" id="inventory-item-500">
-    <img src="YourCustomImage1.png" alt="YourCustomImage1">
-    <div class="inventory-item-name">Przedmiot 1</div>
+    <img src="NowyPrzedmiot1.png" alt="NowyPrzedmiot1">
+    <div class="inventory-item-name">Nowy Przedmiot 1</div>
     <div class="inventory-item-count" id="item-count-500">0</div>
   </div>
   <div class="inventory-item" id="inventory-item-800">
-    <img src="YourCustomImage2.png" alt="YourCustomImage2">
-    <div class="inventory-item-name">Przedmiot 2</div>
+    <img src="NowyPrzedmiot2.png" alt="NowyPrzedmiot2">
+    <div class="inventory-item-name">Nowy Przedmiot 2</div>
     <div class="inventory-item-count" id="item-count-800">0</div>
-  </div>
-  <div class="inventory-item" id="inventory-item-1500">
-    <img src="YourCustomImage3.png" alt="YourCustomImage3">
-    <div class="inventory-item-name">Przedmiot 3</div>
-    <div class="inventory-item-count" id="item-count-1500">0</div>
   </div>
 </div>
 
@@ -200,8 +193,7 @@
     200: 0,
     1000: 0,
     500: 0,
-    800: 0,
-    1500: 0
+    800: 0
   };
 
   function updateScore() {
@@ -211,30 +203,6 @@
   function updateItemCount(item) {
     document.getElementById(`item-count-${item}`).innerText = itemCount[item];
   }
-
-  function updateClickImageWidth() {
-    const clickImage = document.getElementById('click-image');
-    const maxWidth = 40000; 
-    const minWidth = 200; 
-    const widthIncrement = 50; 
-
-    let width = minWidth + Math.floor(score / 100) * widthIncrement;
-    width = Math.min(width, maxWidth);
-    
-    clickImage.style.width = `${width}px`;
-  }
-
-  function handleClick() {
-    this.style.transform = 'scale(0.9)';
-    setTimeout(() => {
-      this.style.transform = 'scale(1)';
-    }, 100);
-    score += clickValue;
-    updateScore();
-    updateClickImageWidth(); 
-  }
-
-  document.getElementById('click-image').addEventListener('click', handleClick);
 
   function buyItem(cost) {
     if (score >= cost) {
@@ -278,8 +246,7 @@
       200: 0,
       1000: 0,
       500: 0,
-      800: 0,
-      1500: 0
+      800: 0
     };
     updateScore();
     updateItemCount(10);
@@ -287,8 +254,6 @@
     updateItemCount(1000);
     updateItemCount(500);
     updateItemCount(800);
-    updateItemCount(1500);
-    updateClickImageWidth();
     localStorage.removeItem('gameState'); 
   }
 
@@ -309,8 +274,6 @@
       updateItemCount(1000);
       updateItemCount(500);
       updateItemCount(800);
-      updateItemCount(1500);
-      updateClickImageWidth();
     }
   }
 
