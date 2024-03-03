@@ -57,29 +57,47 @@
     border-radius: 5px;
   }
   .inventory {
-    margin-top: 10px; /* Zmniejszenie marginesu górnego */
-    width: 80%;
+    margin-top: 30px; /* Zwiększenie marginesu górnego */
+    width: 90%; /* Zwiększenie szerokości ekwipunku */
     margin-left: auto;
     margin-right: auto;
-    max-height: 300px; /* Ograniczenie wysokości ekwipunku */
+    max-height: 400px; /* Ograniczenie wysokości ekwipunku */
     overflow: auto;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 10px;
   }
-  .inventory table {
-    width: 100%;
-    border-collapse: collapse;
-    border: 2px solid #888;
+  .inventory-item {
+    width: 120px; /* Zwiększenie szerokości przedmiotów w ekwipunku */
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
     background-color: #fff;
+    box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.2);
+    transition: all 0.3s ease;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
   }
-  .inventory th, .inventory td {
-    border: 1px solid #888;
-    padding: 8px; /* Zmniejszenie wewnętrznego odstępu */
+  .inventory-item:hover {
+    transform: scale(1.05);
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.3);
   }
-  .inventory th {
-    background-color: #ddd;
+  .inventory-item img {
+    width: 80px;
+    height: auto;
+    border-radius: 5px;
+  }
+  .inventory-item-name {
+    margin-top: 5px;
+    font-size: 14px;
+    color: #555;
+  }
+  .inventory-item-count {
+    margin-top: 5px;
     font-weight: bold;
-  }
-  .inventory .item-count {
-    font-weight: bold;
+    color: #777;
   }
   .item-animation {
     animation: item-bought 1s ease;
@@ -146,36 +164,36 @@
 
 <div class="inventory">
   <h2>Ekwipunek</h2>
-  <table>
-    <tr>
-      <th>Przedmiot</th>
-      <th>Ilość</th>
-    </tr>
-    <tr>
-      <td><img src="Bułka.png" alt="Bułka" class="inventory-item-10"></td>
-      <td id="item-count-10" class="item-count">0</td>
-    </tr>
-    <tr>
-      <td><img src="Burger.png" alt="Burger" class="inventory-item-200"></td>
-      <td id="item-count-200" class="item-count">0</td>
-    </tr>
-    <tr>
-      <td><img src="Pizza.png" alt="Pizza" class="inventory-item-1000"></td>
-      <td id="item-count-1000" class="item-count">0</td>
-    </tr>
-    <tr>
-      <td><img src="YourCustomImage1.png" alt="YourCustomImage1" class="inventory-item-500"></td>
-      <td id="item-count-500" class="item-count">0</td>
-    </tr>
-    <tr>
-      <td><img src="YourCustomImage2.png" alt="YourCustomImage2" class="inventory-item-800"></td>
-      <td id="item-count-800" class="item-count">0</td>
-    </tr>
-    <tr>
-      <td><img src="YourCustomImage3.png" alt="YourCustomImage3" class="inventory-item-1500"></td>
-      <td id="item-count-1500" class="item-count">0</td>
-    </tr>
-  </table>
+  <div class="inventory-item" id="inventory-item-10">
+    <img src="Bułka.png" alt="Bułka">
+    <div class="inventory-item-name">Bułka</div>
+    <div class="inventory-item-count" id="item-count-10">0</div>
+  </div>
+  <div class="inventory-item" id="inventory-item-200">
+    <img src="Burger.png" alt="Burger">
+    <div class="inventory-item-name">Burger</div>
+    <div class="inventory-item-count" id="item-count-200">0</div>
+  </div>
+  <div class="inventory-item" id="inventory-item-1000">
+    <img src="Pizza.png" alt="Pizza">
+    <div class="inventory-item-name">Pizza</div>
+    <div class="inventory-item-count" id="item-count-1000">0</div>
+  </div>
+  <div class="inventory-item" id="inventory-item-500">
+    <img src="YourCustomImage1.png" alt="YourCustomImage1">
+    <div class="inventory-item-name">Przedmiot 1</div>
+    <div class="inventory-item-count" id="item-count-500">0</div>
+  </div>
+  <div class="inventory-item" id="inventory-item-800">
+    <img src="YourCustomImage2.png" alt="YourCustomImage2">
+    <div class="inventory-item-name">Przedmiot 2</div>
+    <div class="inventory-item-count" id="item-count-800">0</div>
+  </div>
+  <div class="inventory-item" id="inventory-item-1500">
+    <img src="YourCustomImage3.png" alt="YourCustomImage3">
+    <div class="inventory-item-name">Przedmiot 3</div>
+    <div class="inventory-item-count" id="item-count-1500">0</div>
+  </div>
 </div>
 
 <script>
@@ -204,11 +222,8 @@
     const minWidth = 200; 
     const widthIncrement = 50; 
 
-    
     let width = minWidth + Math.floor(score / 100) * widthIncrement;
-    
     width = Math.min(width, maxWidth);
-
     
     clickImage.style.width = `${width}px`;
   }
@@ -252,7 +267,7 @@
   }
 
   function animateItemBought(item) {
-    const inventoryItem = document.querySelector(`.inventory-item-${item}`);
+    const inventoryItem = document.getElementById(`inventory-item-${item}`);
     inventoryItem.classList.add('item-animation');
     setTimeout(() => {
       inventoryItem.classList.remove('item-animation');
@@ -281,11 +296,9 @@
     localStorage.removeItem('gameState'); 
   }
 
-  
   function saveGameState() {
     localStorage.setItem('gameState', JSON.stringify({ score, clickValue, itemCount }));
   }
-
 
   function loadGameState() {
     const savedGameState = localStorage.getItem('gameState');
@@ -305,12 +318,10 @@
     }
   }
 
-  
   window.onload = function() {
     loadGameState();
   }
 
- 
   window.onbeforeunload = function() {
     saveGameState();
   }
