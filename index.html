@@ -1,86 +1,32 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Jastrowski Kartel</title></title>
-    <style>
-        body {
-            margin: 0;
-            overflow: hidden;
-        }
-
-        .clickable-area {
-            position: absolute;
-            width: 1000vw;
-            height: 1000vh;
-            background-color: rgba(128, 128, 128, 0); /* Czerwony obszar, dostosuj kolor według potrzeb */
-        }
-
-        .flying-image {
-            position: absolute;
-            width: 100px; /* Dostosuj rozmiar zdjęcia */
-            height: auto;
-        }
-    </style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="style.css">
+  <title>Real-Time Chat Application</title>
 </head>
+
 <body>
-    <div class="clickable-area" onclick="OpenPage('https://www.pornhub.com')"></div>
+  <header>
+    <h1>Real-Time Chat Application</h1>
+  </header>
+  <div class="container">
+    <div class="chat-window">
+      <div class="chat-area">
+        <div class="chat-messages">
+          <!-- Chat Messages -->
+        </div>
+      </div>
+      <div class="user-input">
+        <input type="text" id="message-input" placeholder="Type your message...">
+        <button id="send-button">Send</button>
+      </div>
+    </div>
+  </div>
 
-    <script>
-        function OpenPage(url) {
-            window.location.href = url;
-        }
-
-        function startFlyingImages() {
-            function createFlyingImage() {
-                const flyingImage = document.createElement("img");
-                flyingImage.src = "received_1572996050195325.gif"; // Zmień na właściwą ścieżkę
-                flyingImage.alt = "Latające Zdjęcie";
-                flyingImage.classList.add("flying-image");
-                document.body.appendChild(flyingImage);
-
-                animateFlyingImage(flyingImage);
-            }
-
-            function animateFlyingImage(image) {
-                const maxX = window.innerWidth - image.width;
-                const maxY = window.innerHeight - image.height;
-
-                let x = Math.random() * maxX;
-                let y = Math.random() * maxY;
-
-                let xSpeed = (Math.random() - 2) * 5;
-                let ySpeed = (Math.random() - 2) * 5;
-
-                setInterval(() => {
-                    x += xSpeed;
-                    y += ySpeed;
-
-                    if (x < 0 || x > maxX || y < 0 || y > maxY) {
-                        xSpeed = -xSpeed;
-                        ySpeed = -ySpeed;
-
-                        const clone = image.cloneNode(true);
-                        clone.style.left = x + "px";
-                        clone.style.top = y + "px";
-                        document.body.appendChild(clone);
-                        animateFlyingImage(clone);
-                    }
-
-                    image.style.left = x + "px";
-                    image.style.top = y + "px";
-                }, 50);
-            }
-
-            // Tworzenie kilku latających obrazków
-            for (let i = 0; i < 5; i++) {
-                createFlyingImage();
-            }
-        }
-
-        // Uruchamianie animacji po załadowaniu strony
-        window.onload = startFlyingImages;
-    </script>
+  <script data-two_delay_id="two_65e3cc7011c16" data-two_delay_src="script.js"></script>
 </body>
+
 </html>
