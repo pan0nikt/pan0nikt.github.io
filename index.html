@@ -56,26 +56,54 @@
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script>
     $(document).ready(function(){
+        var chatDataURL = 'https://raw.githubusercontent.com/username/repository/master/chatData.json'; // Ścieżka do pliku JSON na GitHub
+
+        // Funkcja pobierająca wiadomości z pliku JSON
+        function getMessages() {
+            $.getJSON(chatDataURL, function(data){
+                $('#chat-messages').empty(); // Wyczyść zawartość czatu przed dodaniem nowych wiadomości
+                $.each(data.messages, function(index, message){
+                    addMessage(message.text, message.sender);
+                });
+            });
+        }
+
         // Funkcja dodająca wiadomość do czatu
         function addMessage(message, sender) {
             var messageDiv = '<div><strong>' + sender + ': </strong>' + message + '</div>';
             $('#chat-messages').append(messageDiv);
         }
 
+        // Funkcja wysyłająca nową wiadomość do pliku JSON
+        function sendMessage(message, sender) {
+            $.getJSON(chatDataURL, function(data){
+                data.messages.push({ text: message, sender: sender });
+                $.ajax({
+                    url: chatDataURL,
+                    type: 'PUT',
+                    data: JSON.stringify(data),
+                    success: function(){
+                        getMessages(); // Po wysłaniu wiadomości odśwież czat, aby pokazać nową wiadomość
+                    }
+                });
+            });
+        }
+
+        // Pobierz i wyświetl istniejące wiadomości
+        getMessages();
+
         // Nasłuchuj kliknięcia przycisku "Send"
         $('#send-btn').click(function(){
             var message = $('#message-input').val();
             if (message !== '') {
-                addMessage(message, 'Me');
-                // Tutaj można wysłać wiadomość do serwera lub innego użytkownika
-                // W tym przykładzie zakładamy, że po kliknięciu "Send" wiadomość jest dodawana do czatu
+                sendMessage(message, 'Me');
                 $('#message-input').val('');
             }
         });
 
         // Nasłuchuj wciśnięcia klawisza "Enter" na polu input
         $('#message-input').keypress(function(event){
-            if (event.which === 13) { // 13 to kod klawisza "Enter"
+            if (event.which === 13) {
                 $('#send-btn').click();
             }
         });
