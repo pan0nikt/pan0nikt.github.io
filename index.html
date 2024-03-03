@@ -3,111 +3,92 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Live Chat</title>
+<title>Cycu Clicker</title>
 <style>
-    body {
-        font-family: Arial, sans-serif;
-        margin: 0;
-        padding: 0;
-        background-color: #f0f0f0;
-    }
-    #chat-container {
-        width: 400px;
-        margin: 50px auto;
-        background-color: #fff;
-        border-radius: 10px;
-        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-        padding: 20px;
-    }
-    #chat-messages {
-        height: 300px;
-        overflow-y: scroll;
-        margin-bottom: 10px;
-        padding: 10px;
-        border-radius: 5px;
-        background-color: #f9f9f9;
-    }
-    #message-input {
-        width: calc(100% - 20px);
-        padding: 8px;
-        border: 1px solid #ccc;
-        border-radius: 5px;
-    }
-    #send-btn {
-        width: 100%;
-        padding: 8px;
-        margin-top: 5px;
-        background-color: #4caf50;
-        color: #fff;
-        border: none;
-        border-radius: 5px;
-        cursor: pointer;
-    }
+  body {
+    font-family: Arial, sans-serif;
+    text-align: center;
+  }
+  #score {
+    font-size: 24px;
+    margin-bottom: 20px;
+  }
+  #image-container {
+    margin-bottom: 20px;
+  }
+  #click-image {
+    width: 200px;
+    height: 200px;
+    cursor: pointer;
+  }
+  #shop {
+    margin-top: 50px;
+  }
+  .item {
+    display: inline-block;
+    margin: 10px;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+  .item img {
+    width: 100px;
+    height: 100px;
+    margin-bottom: 5px;
+  }
 </style>
 </head>
 <body>
 
-<div id="chat-container">
-    <div id="chat-messages"></div>
-    <input type="text" id="message-input" placeholder="Type your message...">
-    <button id="send-btn">Send</button>
+<div id="score">Cycu: <span id="score-value">0</span></div>
+
+<div id="image-container">
+  <img id="click-image" src="Test.jpg" alt="Click Image">
 </div>
 
-<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<div id="shop">
+  <div class="item" onclick="buyItem(10)">
+    <img src="Bułka.png" alt="Bułka">
+    <div>Bułka (10 Cycu)</div>
+  </div>
+  <div class="item" onclick="buyItem(50)">
+    <img src="Burger.png" alt="Burger">
+    <div>Burger (50 Cycu)</div>
+  </div>
+  <div class="item" onclick="buyItem(100)">
+    <img src="Pizza.webp" alt="Pizza">
+    <div>Pizza (100 Cycu)</div>
+  </div>
+</div>
+
 <script>
-    $(document).ready(function(){
-        var chatDataURL = 'https://raw.githubusercontent.com/username/repository/master/chatData.json'; // Ścieżka do pliku JSON na GitHub
+  // Add click event listener to the image
+  document.getElementById('click-image').addEventListener('click', handleClick);
 
-        // Funkcja pobierająca wiadomości z pliku JSON
-        function getMessages() {
-            $.getJSON(chatDataURL, function(data){
-                $('#chat-messages').empty(); // Wyczyść zawartość czatu przed dodaniem nowych wiadomości
-                $.each(data.messages, function(index, message){
-                    addMessage(message.text, message.sender);
-                });
-            });
-        }
+  // Function to handle buying items
+  function buyItem(cost) {
+    if (score >= cost) {
+      score -= cost;
+      updateScore();
+      // Add code here to grant item purchased by the player
+      alert('Przedmiot zakupiony!');
+    } else {
+      alert('Nie wystarczającu Cyca!');
+    }
+  }
 
-        // Funkcja dodająca wiadomość do czatu
-        function addMessage(message, sender) {
-            var messageDiv = '<div><strong>' + sender + ': </strong>' + message + '</div>';
-            $('#chat-messages').append(messageDiv);
-        }
-
-        // Funkcja wysyłająca nową wiadomość do pliku JSON
-        function sendMessage(message, sender) {
-            $.getJSON(chatDataURL, function(data){
-                data.messages.push({ text: message, sender: sender });
-                $.ajax({
-                    url: chatDataURL,
-                    type: 'PUT',
-                    data: JSON.stringify(data),
-                    success: function(){
-                        getMessages(); // Po wysłaniu wiadomości odśwież czat, aby pokazać nową wiadomość
-                    }
-                });
-            });
-        }
-
-        // Pobierz i wyświetl istniejące wiadomości
-        getMessages();
-
-        // Nasłuchuj kliknięcia przycisku "Send"
-        $('#send-btn').click(function(){
-            var message = $('#message-input').val();
-            if (message !== '') {
-                sendMessage(message, 'Me');
-                $('#message-input').val('');
-            }
-        });
-
-        // Nasłuchuj wciśnięcia klawisza "Enter" na polu input
-        $('#message-input').keypress(function(event){
-            if (event.which === 13) {
-                $('#send-btn').click();
-            }
-        });
-    });
+  // Function to upgrade click value
+  function upgradeClickValue(cost, increase) {
+    if (score >= cost) {
+      score -= cost;
+      clickValue += increase;
+      updateScore();
+      alert('Ulepszono!');
+    } else {
+      alert('Nie wystarczającu Cyca!');
+    }
+  }
 </script>
 
 </body>
