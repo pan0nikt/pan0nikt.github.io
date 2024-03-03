@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="UTF-8">
@@ -50,27 +50,28 @@
 <div id="shop">
   <div class="item" onclick="buyItem(10)">
     <img src="Bułka.png" alt="Bułka">
-    <div>Bułka (10 Cyca)</div>
+    <div>Bułka (100 Cyca)</div>
   </div>
   <div class="item" onclick="buyItem(50)">
     <img src="Burger.png" alt="Burger">
-    <div>Burger (50 Cyca)</div>
+    <div>Burger (500 Cyca)</div>
   </div>
   <div class="item" onclick="buyItem(100)">
     <img src="Pizza.png" alt="Pizza">
-    <div>Pizza (100 Cyca)</div>
+    <div>Pizza (5000 Cyca)</div>
   </div>
 </div>
 
 <script>
   let score = 0;
+  let clickValue = 1;
 
   function updateScore() {
     document.getElementById('score-value').innerText = score;
   }
 
   function handleClick() {
-    score++;
+    score += clickValue;
     updateScore();
   }
 
@@ -81,6 +82,13 @@
     if (score >= cost) {
       score -= cost;
       updateScore();
+      if (cost === 10) {
+        clickValue = 2;
+      } else if (cost === 50) {
+        clickValue = 5;
+      } else if (cost === 100) {
+        clickValue = 10;
+      }
       alert('Przedmiot zakupiony!');
     } else {
       alert('Nie wystarczający Cyców!');
