@@ -1,0 +1,323 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Cycu Clicker</title>
+<style>
+  body {
+    font-family: Arial, sans-serif;
+    background: linear-gradient(135deg, #f6d365 0%, #fda085 100%);
+    text-align: center;
+    color: #333;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    height: 100vh;
+  }
+
+  #score {
+    font-size: 24px;
+    margin-bottom: auto;
+    color: #555;
+  }
+  #image-container {
+    margin-bottom: 20px;
+  }
+  #click-image {
+    height: 200px;
+    cursor: pointer;
+    border-radius: 10px;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.5);
+    transition: transform 0.3s ease, width 0.3s ease;
+  }
+  #shop {
+    margin-top: 20px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 20px;
+  }
+  .item {
+    margin: 10px;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    cursor: pointer;
+    background-color: #fff;
+    box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.2);
+    transition: all 0.3s ease;
+  }
+  .item:hover {
+    transform: scale(1.05);
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.3);
+  }
+  .item img {
+    width: 100px;
+    height: 100px;
+    margin-bottom: 5px;
+    border-radius: 5px;
+  }
+  .inventory {
+    margin-top: 20px;
+    width: 80%;
+    max-height: 300px;
+    overflow: auto;
+  }
+  .inventory table {
+    width: 100%;
+    border-collapse: collapse;
+    border: 2px solid #888;
+    background-color: #fff;
+  }
+  .inventory th, .inventory td {
+    border: 1px solid #888;
+    padding: 10px;
+  }
+  .inventory th {
+    background-color: #ddd;
+    font-weight: bold;
+  }
+  .inventory .item-count {
+    font-weight: bold;
+  }
+  .item-animation {
+    animation: item-bought 1s ease;
+  }
+  @keyframes item-bought {
+    0% { transform: translateY(-20px); opacity: 0; }
+    100% { transform: translateY(0); opacity: 1; }
+  }
+  #reset-button {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    padding: 10px 20px;
+    background-color: #ff6b6b;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+    transition: background-color 0.3s ease;
+  }
+  #reset-button:hover {
+    background-color: #ff5252;
+  }
+  
+</style>
+</head>
+<body>
+
+<button id="reset-button" onclick="resetGame()">Resetuj grę</button>
+
+<div id="score">Cycu: <span id="score-value">0</span></div>
+
+<div id="image-container">
+  <img id="click-image" src="Cycu.jpg" alt="Click Image">
+</div>
+
+<div id="shop">
+  <div class="item" onclick="buyItem(10)">
+    <img src="Bułka.png" alt="Bułka">
+    <div style="color: #555;">Bułka (10 Cyca)</div>
+  </div>
+  <div class="item" onclick="buyItem(200)">
+    <img src="Burger.png" alt="Burger">
+    <div style="color: #555;">Burger (200 Cyca)</div>
+  </div>
+  <div class="item" onclick="buyItem(1000)">
+    <img src="Pizza.png" alt="Pizza">
+    <div style="color: #555;">Pizza (1000 Cyca)</div>
+  </div>
+  <div class="item" onclick="buyItem(5000)">
+    <img src="Kebab.png" alt="Kebab">
+    <div style="color: #555;">Kebab (5000 Cyca)</div>
+  </div>
+  <div class="item" onclick="buyItem(12000)">
+    <img src="NuggetsyFrytki.png" alt="Nuggetsy z Frytkami">
+    <div style="color: #555;">Nuggetsy z Frytkami (12000 Cyca)</div>
+  </div>
+  <div class="item" onclick="buyItem(100000)">
+    <img src="Salatka.png" alt="Sałatka">
+    <div style="color: #555;">Sałatka (100000 Cyca)</div>
+  </div>
+</div>
+
+<div class="inventory">
+  <h2>Ekwipunek</h2>
+  <table>
+    <tr>
+      <th>Przedmiot</th>
+      <th>Ilość</th>
+    </tr>
+    <tr>
+      <td><img src="Bułka.png" alt="Bułka" class="inventory-item-10"></td>
+      <td id="item-count-10" class="item-count">0</td>
+    </tr>
+    <tr>
+      <td><img src="Burger.png" alt="Burger" class="inventory-item-200"></td>
+      <td id="item-count-200" class="item-count">0</td>
+    </tr>
+    <tr>
+      <td><img src="Pizza.png" alt="Pizza" class="inventory-item-1000"></td>
+      <td id="item-count-1000" class="item-count">0</td>
+    </tr>
+    <tr>
+      <td><img src="Kebab.png" alt="Kebab" class="inventory-item-5000"></td>
+      <td id="item-count-5000" class="item-count">0</td>
+    </tr>
+    <tr>
+      <td><img src="NuggetsyFrytki.png" alt="Nuggetsy z Frytkami" class="inventory-item-12000"></td>
+      <td id="item-count-12000" class="item-count">0</td>
+    </tr>
+    <tr>
+      <td><img src="Salatka.png" alt="Sałatka" class="inventory-item-100000"></td>
+      <td id="item-count-100000" class="item-count">0</td>
+    </tr>
+  </table>
+</div>
+
+<script>
+  let score = 0;
+  let clickValue = 1;
+  let itemCount = {
+    10: 0,
+    200: 0,
+    1000: 0,
+    5000: 0,
+    12000: 0,
+    100000: 0
+  };
+
+  function updateScore() {
+    document.getElementById('score-value').innerText = score;
+  }
+
+  function updateItemCount(item) {
+    document.getElementById(`item-count-${item}`).innerText = itemCount[item];
+  }
+
+  function updateClickImageWidth() {
+    const clickImage = document.getElementById('click-image');
+    const maxWidth = 40000; 
+    const minWidth = 200; 
+    const widthIncrement = 50; 
+
+    
+    let width = minWidth + Math.floor(score / 100) * widthIncrement;
+    
+    width = Math.min(width, maxWidth);
+
+    
+    clickImage.style.width = `${width}px`;
+  }
+
+  function handleClick() {
+    this.style.transform = 'scale(0.9)';
+    setTimeout(() => {
+      this.style.transform = 'scale(1)';
+    }, 100);
+    score += clickValue;
+    updateScore();
+    updateClickImageWidth(); 
+  }
+
+  document.getElementById('click-image').addEventListener('click', handleClick);
+
+  function buyItem(cost) {
+    if (score >= cost) {
+      score -= cost;
+      updateScore();
+      itemCount[cost]++;
+      updateItemCount(cost);
+      clickValue = 1;
+      for (let item in itemCount) {
+        clickValue *= (itemCount[item] + 1); 
+      }
+      showMessage('Przedmiot zakupiony!');
+      animateItemBought(cost); 
+    } else {
+      showMessage('Nie wystarczająco Cyców!');
+    }
+  }
+
+  function showMessage(message) {
+    const messageElement = document.getElementById('message');
+    messageElement.innerText = message;
+    messageElement.style.display = 'block';
+    setTimeout(function() {
+      messageElement.style.display = 'none';
+    }, 2000);
+  }
+
+  function animateItemBought(item) {
+    const inventoryItem = document.querySelector(`.inventory-item-${item}`);
+    inventoryItem.classList.add('item-animation');
+    setTimeout(() => {
+      inventoryItem.classList.remove('item-animation');
+    }, 1000);
+  }
+
+  function resetGame() {
+    score = 0;
+    clickValue = 1;
+    itemCount = {
+      10: 0,
+      200: 0,
+      1000: 0,
+      5000: 0,
+      12000: 0,
+      100000: 0
+    };
+    updateScore();
+    updateItemCount(10);
+    updateItemCount(200);
+    updateItemCount(1000);
+    updateItemCount(5000);
+    updateItemCount(12000);
+    updateItemCount(100000);
+    updateClickImageWidth();
+    localStorage.removeItem('gameState'); 
+  }
+
+  
+  function saveGameState() {
+    localStorage.setItem('gameState', JSON.stringify({ score, clickValue, itemCount }));
+  }
+
+
+  function loadGameState() {
+    const savedGameState = localStorage.getItem('gameState');
+    if (savedGameState) {
+      const { score: savedScore, clickValue: savedClickValue, itemCount: savedItemCount } = JSON.parse(savedGameState);
+      score = savedScore;
+      clickValue = savedClickValue;
+      itemCount = savedItemCount;
+      updateScore();
+      updateItemCount(10);
+      updateItemCount(200);
+      updateItemCount(1000);
+      updateItemCount(5000);
+      updateItemCount(12000);
+      updateItemCount(100000);
+      updateClickImageWidth();
+    }
+  }
+
+  
+  window.onload = function() {
+    loadGameState();
+  }
+
+ 
+  window.onbeforeunload = function() {
+    saveGameState();
+  }
+</script>
+
+</body>
+</html>
