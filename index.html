@@ -7,7 +7,7 @@
 <style>
   body {
     font-family: Arial, sans-serif;
-    background-color: #f0f0f0;
+    background: linear-gradient(135deg, #f6d365 0%, #fda085 100%);
     text-align: center;
     color: #333;
   }
@@ -63,6 +63,34 @@
     display: none;
     box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.5);
   }
+  /* Dodatkowe style dla figur geometrycznych */
+  .circle {
+    width: 100px;
+    height: 100px;
+    background-color: #6c5b7b;
+    border-radius: 50%;
+    position: absolute;
+    top: 10%;
+    left: 10%;
+  }
+  .rectangle {
+    width: 150px;
+    height: 100px;
+    background-color: #c06c84;
+    position: absolute;
+    top: 30%;
+    left: 70%;
+  }
+  .triangle {
+    width: 0;
+    height: 0;
+    border-left: 50px solid transparent;
+    border-right: 50px solid transparent;
+    border-bottom: 100px solid #355c7d;
+    position: absolute;
+    top: 60%;
+    left: 30%;
+  }
 </style>
 </head>
 <body>
@@ -91,6 +119,11 @@
 </div>
 
 <div id="message"></div>
+
+<!-- Dodatkowe figury geometryczne -->
+<div class="circle"></div>
+<div class="rectangle"></div>
+<div class="triangle"></div>
 
 <script>
   let score = 0;
