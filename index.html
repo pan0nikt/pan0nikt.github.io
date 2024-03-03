@@ -52,10 +52,13 @@
     border-radius: 5px;
   }
   .inventory {
-    display: inline-block;
     margin-top: 20px;
+  }
+  .inventory table {
+    width: 100%;
     border-collapse: collapse;
     border: 2px solid #888;
+    background-color: #fff;
   }
   .inventory th, .inventory td {
     border: 1px solid #888;
@@ -63,11 +66,10 @@
   }
   .inventory th {
     background-color: #ddd;
+    font-weight: bold;
   }
-  .inventory img {
-    width: 50px;
-    height: 50px;
-    border-radius: 5px;
+  .inventory .item-count {
+    font-weight: bold;
   }
 </style>
 </head>
@@ -104,16 +106,16 @@
       <th>Ilość</th>
     </tr>
     <tr>
-      <td><img src="Bułka.png" alt="Bułka"></td>
-      <td id="item-count-10">0</td>
+      <td>Bułka</td>
+      <td id="item-count-10" class="item-count">0</td>
     </tr>
     <tr>
-      <td><img src="Burger.png" alt="Burger"></td>
-      <td id="item-count-200">0</td>
+      <td>Burger</td>
+      <td id="item-count-200" class="item-count">0</td>
     </tr>
     <tr>
-      <td><img src="Pizza.png" alt="Pizza"></td>
-      <td id="item-count-1000">0</td>
+      <td>Pizza</td>
+      <td id="item-count-1000" class="item-count">0</td>
     </tr>
   </table>
 </div>
@@ -171,17 +173,7 @@
     for (let item in itemCount) {
       let count = itemCount[item];
       if (count > 1) {
-        let img = document.createElement('img');
-        img.src = `${item}.png`;
-        img.alt = `Item`;
-        img.style.width = '50px';
-        img.style.height = '50px';
-        img.style.borderRadius = '5px';
-        document.getElementById(`item-count-${item}`).innerHTML = '';
-        document.getElementById(`item-count-${item}`).appendChild(img);
-        let span = document.createElement('span');
-        span.innerText = ` x${count}`;
-        document.getElementById(`item-count-${item}`).appendChild(span);
+        document.getElementById(`item-count-${item}`).innerText = `x${count}`;
       }
     }
   }
