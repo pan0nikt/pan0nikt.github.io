@@ -51,17 +51,23 @@
     margin-bottom: 5px;
     border-radius: 5px;
   }
-  #message {
-    position: fixed;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    background-color: rgba(255, 255, 255, 0.9);
-    padding: 20px;
-    border-radius: 10px;
-    z-index: 999;
-    display: none;
-    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.5);
+  .inventory {
+    display: inline-block;
+    margin-top: 20px;
+    border-collapse: collapse;
+    border: 2px solid #888;
+  }
+  .inventory th, .inventory td {
+    border: 1px solid #888;
+    padding: 10px;
+  }
+  .inventory th {
+    background-color: #ddd;
+  }
+  .inventory img {
+    width: 50px;
+    height: 50px;
+    border-radius: 5px;
   }
 </style>
 </head>
@@ -90,21 +96,50 @@
   </div>
 </div>
 
-<div id="message"></div>
+<div class="inventory">
+  <h2>Ekwipunek</h2>
+  <table>
+    <tr>
+      <th>Przedmiot</th>
+      <th>Ilość</th>
+    </tr>
+    <tr>
+      <td><img src="Bułka.png" alt="Bułka"></td>
+      <td id="item-count-10">0</td>
+    </tr>
+    <tr>
+      <td><img src="Burger.png" alt="Burger"></td>
+      <td id="item-count-200">0</td>
+    </tr>
+    <tr>
+      <td><img src="Pizza.png" alt="Pizza"></td>
+      <td id="item-count-1000">0</td>
+    </tr>
+  </table>
+</div>
 
 <script>
   let score = 0;
   let clickValue = 1;
+  let itemCount = {
+    10: 0,
+    200: 0,
+    1000: 0
+  };
 
   function updateScore() {
     document.getElementById('score-value').innerText = score;
   }
 
+  function updateItemCount(item) {
+    document.getElementById(`item-count-${item}`).innerText = itemCount[item];
+  }
+
   function handleClick() {
-    this.style.transform = 'scale(0.9)'; // Skalowanie obrazka przy kliknięciu
+    this.style.transform = 'scale(0.9)';
     setTimeout(() => {
-      this.style.transform = 'scale(1)'; // Przywrócenie oryginalnego rozmiaru
-    }, 100); // Czas trwania animacji w milisekundach
+      this.style.transform = 'scale(1)';
+    }, 100);
     score += clickValue;
     updateScore();
   }
@@ -115,6 +150,9 @@
     if (score >= cost) {
       score -= cost;
       updateScore();
+      itemCount[cost]++;
+      updateItemCount(cost);
+      stackItems();
       if (cost === 10) {
         clickValue = 2;
       } else if (cost === 200) {
@@ -123,9 +161,28 @@
         clickValue = 10;
       }
       showMessage('Przedmiot zakupiony!');
-      playPurchaseSound(); // Dodanie efektu dźwiękowego
+      playPurchaseSound();
     } else {
       showMessage('Nie wystarczająco Cyców!');
+    }
+  }
+
+  function stackItems() {
+    for (let item in itemCount) {
+      let count = itemCount[item];
+      if (count > 1) {
+        let img = document.createElement('img');
+        img.src = `${item}.png`;
+        img.alt = `Item`;
+        img.style.width = '50px';
+        img.style.height = '50px';
+        img.style.borderRadius = '5px';
+        document.getElementById(`item-count-${item}`).innerHTML = '';
+        document.getElementById(`item-count-${item}`).appendChild(img);
+        let span = document.createElement('span');
+        span.innerText = ` x${count}`;
+        document.getElementById(`item-count-${item}`).appendChild(span);
+      }
     }
   }
 
