@@ -20,7 +20,6 @@
     margin-bottom: 20px;
   }
   #click-image {
-    width: 200px;
     height: 200px;
     cursor: pointer;
     border-radius: 10px;
@@ -77,10 +76,6 @@
 </style>
 </head>
 <body>
-
-<audio id="purchase-sound" preload="auto">
-  <source src="purchase_sound.mp3" type="audio/mpeg">
-</audio>
 
 <div id="score">Cycu: <span id="score-value">0</span></div>
 
@@ -159,21 +154,13 @@
       updateScore();
       itemCount[cost]++;
       updateItemCount(cost);
-      stackItems();
-      clickValue *= itemCount[cost]; // Mnożenie ilości przedmiotu przez clickValue
+      clickValue = 1;
+      for (let item in itemCount) {
+        clickValue *= (itemCount[item] + 1); // +1 ponieważ ilość przedmiotów jest liczona od zera
+      }
       showMessage('Przedmiot zakupiony!');
-      playPurchaseSound();
     } else {
       showMessage('Nie wystarczająco Cyców!');
-    }
-  }
-
-  function stackItems() {
-    for (let item in itemCount) {
-      let count = itemCount[item];
-      if (count > 1) {
-        document.getElementById(`item-count-${item}`).innerText = `x${count}`;
-      }
     }
   }
 
@@ -184,11 +171,6 @@
     setTimeout(function() {
       messageElement.style.display = 'none';
     }, 2000);
-  }
-
-  function playPurchaseSound() {
-    const audio = document.getElementById('purchase-sound');
-    audio.play();
   }
 </script>
 
