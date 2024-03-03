@@ -131,27 +131,29 @@
 <div id="score">Cycu: <span id="score-value">0</span></div>
 
 <div id="shop">
-  <div class="item" onclick="buyItem(10)">
+  <div class="item" onclick="buyItem(100)">
     <img src="Bułka.png" alt="Bułka">
-    <div style="color: #555;">Bułka (10 Cyca)</div>
+    <div style="color: #555;">Bułka (100 Cyca)</div>
   </div>
-  <div class="item" onclick="buyItem(200)">
+  <div class="item" onclick="buyItem(500)">
     <img src="Burger.png" alt="Burger">
-    <div style="color: #555;">Burger (200 Cyca)</div>
+    <div style="color: #555;">Burger (500 Cyca)</div>
   </div>
-  <div class="item" onclick="buyItem(1000)">
+  <div class="item" onclick="buyItem(2500)">
     <img src="Pizza.png" alt="Pizza">
     <div style="color: #555;">Pizza (1000 Cyca)</div>
   </div>
- 
-  <!-- Nowe przedmioty -->
-  <div class="item" onclick="buyItem(500)">
-    <img src="NowyPrzedmiot1.png" alt="NowyPrzedmiot1">
-    <div style="color: #555;">Nowy Przedmiot 1 (500 Cyca)</div>
+  <div class="item" onclick="buyItem(5000)">
+    <img src="kebab.png" alt="Kebab">
+    <div style="color: #555;">Kebab (5000 Cyca)</div>
   </div>
-  <div class="item" onclick="buyItem(800)">
-    <img src="NowyPrzedmiot2.png" alt="NowyPrzedmiot2">
-    <div style="color: #555;">Nowy Przedmiot 2 (800 Cyca)</div>
+  <div class="item" onclick="buyItem(12000)">
+    <img src="Nuggetsy z Frytkami.png" alt="Nuggetsy z Frytkami">
+    <div style="color: #555;">Nuggetsy z Frytkami (12000 Cyca)</div>
+  </div>
+  <div class="item" onclick="buyItem(100000)">
+    <img src="Sałatka.png" alt="Sałatka">
+    <div style="color: #555;">Sałatka (100000 Cyca)</div>
   </div>
 </div>
 
@@ -160,7 +162,7 @@
   <div class="inventory-item" id="inventory-item-10">
     <img src="Bułka.png" alt="Bułka">
     <div class="inventory-item-name">Bułka</div>
-    <div class="inventory-item-count" id="item-count-10">0</div>
+    <div class="invento unt" id="item-count-10">0</div>
   </div>
   <div class="inventory-item" id="inventory-item-200">
     <img src="Burger.png" alt="Burger">
@@ -172,16 +174,20 @@
     <div class="inventory-item-name">Pizza</div>
     <div class="inventory-item-count" id="item-count-1000">0</div>
   </div>
-  <!-- Nowe przedmioty w ekwipunku -->
   <div class="inventory-item" id="inventory-item-500">
-    <img src="NowyPrzedmiot1.png" alt="NowyPrzedmiot1">
-    <div class="inventory-item-name">Nowy Przedmiot 1</div>
+    <img src="kebab.png" alt="Kebab">
+    <div class="inventory-item-name">Kebab</div>
     <div class="inventory-item-count" id="item-count-500">0</div>
   </div>
   <div class="inventory-item" id="inventory-item-800">
-    <img src="NowyPrzedmiot2.png" alt="NowyPrzedmiot2">
-    <div class="inventory-item-name">Nowy Przedmiot 2</div>
+    <img src="Nuggetsy z Frytkami.png" alt="Nuggetsy z Frytkami">
+    <div class="inventory-item-name">Nuggetsy z Frytkami</div>
     <div class="inventory-item-count" id="item-count-800">0</div>
+  </div>
+  <div class="inventory-item" id="inventory-item-1500">
+    <img src="Sałatka.png" alt="Sałatka">
+    <div class="inventory-item-name">Sałatka</div>
+    <div class="inventory-item-count" id="item-count-1500">0</div>
   </div>
 </div>
 
@@ -189,11 +195,12 @@
   let score = 0;
   let clickValue = 1;
   let itemCount = {
-    10: 0,
-    200: 0,
-    1000: 0,
-    500: 0,
-    800: 0
+    100: 0,
+    300: 0,
+    2500: 0,
+    5000: 0,
+    12000: 0,
+    100000: 0
   };
 
   function updateScore() {
@@ -242,18 +249,20 @@
     score = 0;
     clickValue = 1;
     itemCount = {
-      10: 0,
-      200: 0,
-      1000: 0,
-      500: 0,
-      800: 0
+      100: 0,
+      300: 0,
+      2500: 0,
+      5000: 0,
+      12000: 0,
+      100000: 0
     };
     updateScore();
-    updateItemCount(10);
-    updateItemCount(200);
-    updateItemCount(1000);
-    updateItemCount(500);
-    updateItemCount(800);
+    updateItemCount(100);
+    updateItemCount(300);
+    updateItemCount(2500);
+    updateItemCount(5000);
+    updateItemCount(12000);
+    updateItemCount(100000);
     localStorage.removeItem('gameState'); 
   }
 
@@ -269,11 +278,12 @@
       clickValue = savedClickValue;
       itemCount = savedItemCount;
       updateScore();
-      updateItemCount(10);
-      updateItemCount(200);
-      updateItemCount(1000);
-      updateItemCount(500);
-      updateItemCount(800);
+      updateItemCount(100);
+      updateItemCount(300);
+      updateItemCount(2500);
+      updateItemCount(5000);
+      updateItemCount(12000);
+      updateItemCount(100000);
     }
   }
 
