@@ -21,7 +21,6 @@
 
   #score {
     font-size: 24px;
-    margin-bottom: auto;
     color: #555;
   }
   #image-container {
@@ -71,6 +70,10 @@
     width: 80%;
     max-height: 300px;
     overflow: auto;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 20px;
   }
   .inventory table {
     width: 100%;
@@ -111,6 +114,16 @@
   }
   #reset-button:hover {
     background-color: #ff5252;
+  }
+  
+  .inventory .inventory-item-10,
+  .inventory .inventory-item-200,
+  .inventory .inventory-item-1000,
+  .inventory .inventory-item-5000,
+  .inventory .inventory-item-12000,
+  .inventory .inventory-item-100000 {
+      width: 50px; /* Nowa szerokość */
+      height: 50px; /* Nowa wysokość */
   }
   
 </style>
@@ -154,36 +167,30 @@
 
 <div class="inventory">
   <h2>Ekwipunek</h2>
-  <table>
-    <tr>
-      <th>Przedmiot</th>
-      <th>Ilość</th>
-    </tr>
-    <tr>
-      <td><img src="Bułka.png" alt="Bułka" class="inventory-item-10"></td>
-      <td id="item-count-10" class="item-count">0</td>
-    </tr>
-    <tr>
-      <td><img src="Burger.png" alt="Burger" class="inventory-item-200"></td>
-      <td id="item-count-200" class="item-count">0</td>
-    </tr>
-    <tr>
-      <td><img src="Pizza.png" alt="Pizza" class="inventory-item-1000"></td>
-      <td id="item-count-1000" class="item-count">0</td>
-    </tr>
-    <tr>
-      <td><img src="kebab.png" alt="Kebab" class="inventory-item-5000"></td>
-      <td id="item-count-5000" class="item-count">0</td>
-    </tr>
-    <tr>
-      <td><img src="Nuggetsy z Frytkami.png" alt="Nuggetsy z Frytkami" class="inventory-item-12000"></td>
-      <td id="item-count-12000" class="item-count">0</td>
-    </tr>
-    <tr>
-      <td><img src="Sałatka.png" alt="Sałatka" class="inventory-item-100000"></td>
-      <td id="item-count-100000" class="item-count">0</td>
-    </tr>
-  </table>
+  <div class="inventory-item">
+    <img src="Bułka.png" alt="Bułka" class="inventory-item-10">
+    <span id="item-count-10" class="item-count">0</span>
+  </div>
+  <div class="inventory-item">
+    <img src="Burger.png" alt="Burger" class="inventory-item-200">
+    <span id="item-count-200" class="item-count">0</span>
+  </div>
+  <div class="inventory-item">
+    <img src="Pizza.png" alt="Pizza" class="inventory-item-1000">
+    <span id="item-count-1000" class="item-count">0</span>
+  </div>
+  <div class="inventory-item">
+    <img src="kebab.png" alt="Kebab" class="inventory-item-5000">
+    <span id="item-count-5000" class="item-count">0</span>
+  </div>
+  <div class="inventory-item">
+    <img src="Nuggetsy z Frytkami.png" alt="Nuggetsy z Frytkami" class="inventory-item-12000">
+    <span id="item-count-12000" class="item-count">0</span>
+  </div>
+  <div class="inventory-item">
+    <img src="Sałatka.png" alt="Sałatka" class="inventory-item-100000">
+    <span id="item-count-100000" class="item-count">0</span>
+  </div>
 </div>
 
 <script>
@@ -212,12 +219,9 @@
     const minWidth = 200; 
     const widthIncrement = 50; 
 
-    
     let width = minWidth + Math.floor(score / 100) * widthIncrement;
-    
     width = Math.min(width, maxWidth);
 
-    
     clickImage.style.width = `${width}px`;
   }
 
@@ -289,7 +293,6 @@
     localStorage.removeItem('gameState'); 
   }
 
-  
   function saveGameState() {
     localStorage.setItem('gameState', JSON.stringify({ score, clickValue, itemCount }));
   }
@@ -313,12 +316,10 @@
     }
   }
 
-  
   window.onload = function() {
     loadGameState();
   }
 
- 
   window.onbeforeunload = function() {
     saveGameState();
   }
