@@ -121,7 +121,9 @@
   .inventory .inventory-item-1000,
   .inventory .inventory-item-5000,
   .inventory .inventory-item-12000,
-  .inventory .inventory-item-100000 {
+  .inventory .inventory-item-100000,
+  .inventory .inventory-item-5000000, /* Nowy przedmiot */
+  .inventory .inventory-item-100000000 { /* Nowe przedmioty */
       width: 50px; /* Nowa szerokość */
       height: 50px; /* Nowa wysokość */
   }
@@ -163,6 +165,19 @@
     <img src="Sałatka.png" alt="Sałatka">
     <div class="item-description">Sałatka (100000 Cyca)</div>
   </div>
+  <!-- Dodane nowe przedmioty -->
+  <div class="item" onclick="buyItem(5000000)">
+    <img src="Buritto.png" alt="Buritto">
+    <div class="item-description">Buritto (5000000 Cyca)</div>
+  </div>
+  <div class="item" onclick="buyItem(100000000)">
+    <img src="Drwal.png" alt="Drwal">
+    <div class="item-description">Drwal (100000000 Cyca)</div>
+  </div>
+  <div class="item" onclick="buyItem(100000000)">
+    <img src="Nachosy.png" alt="Nachosy">
+    <div class="item-description">Nachosy (100000000 Cyca)</div>
+  </div>
 </div>
 
 <div class="inventory">
@@ -191,6 +206,19 @@
     <img src="Sałatka.png" alt="Sałatka" class="inventory-item-100000">
     <span id="item-count-100000" class="item-count">0</span>
   </div>
+  <!-- Dodane nowe przedmioty -->
+  <div class="inventory-item">
+    <img src="Buritto.png" alt="Buritto" class="inventory-item-5000000">
+    <span id="item-count-5000000" class="item-count">0</span>
+  </div>
+  <div class="inventory-item">
+    <img src="Drwal.png" alt="Drwal" class="inventory-item-100000000">
+    <span id="item-count-100000000" class="item-count">0</span>
+  </div>
+  <div class="inventory-item">
+    <img src="Nachosy.png" alt="Nachosy" class="inventory-item-100000000">
+    <span id="item-count-100000000" class="item-count">0</span>
+  </div>
 </div>
 
 <script>
@@ -202,7 +230,9 @@
     1000: 0,
     5000: 0,
     12000: 0,
-    100000: 0
+    100000: 0,
+    5000000: 0,
+    100000000: 0,
   };
 
   function updateScore() {
@@ -280,7 +310,9 @@
       1000: 0,
       5000: 0,
       12000: 0,
-      100000: 0
+      100000: 0,
+      5000000: 0,
+      100000000: 0,
     };
     updateScore();
     updateItemCount(10);
@@ -289,6 +321,8 @@
     updateItemCount(5000);
     updateItemCount(12000);
     updateItemCount(100000);
+    updateItemCount(5000000);
+    updateItemCount(100000000);
     updateClickImageWidth();
     localStorage.removeItem('gameState'); 
   }
@@ -312,6 +346,8 @@
       updateItemCount(5000);
       updateItemCount(12000);
       updateItemCount(100000);
+      updateItemCount(5000000);
+      updateItemCount(100000000);
       updateClickImageWidth();
     }
   }
