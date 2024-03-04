@@ -219,7 +219,7 @@
     const minWidth = 200; 
     const widthIncrement = 50; 
 
-    let width = minWidth + Math.floor(score / 1000) * widthIncrement;
+    let width = minWidth + Math.floor(score / 10000) * widthIncrement;
     width = Math.min(width, maxWidth);
 
     clickImage.style.width = `${width}px`;
