@@ -215,11 +215,11 @@
 
   function updateClickImageWidth() {
     const clickImage = document.getElementById('click-image');
-    const maxWidth = 40000; 
+    const maxWidth = 4000000000; 
     const minWidth = 200; 
     const widthIncrement = 50; 
 
-    let width = minWidth + Math.floor(score / 100) * widthIncrement;
+    let width = minWidth + Math.floor(score / 1000) * widthIncrement;
     width = Math.min(width, maxWidth);
 
     clickImage.style.width = `${width}px`;
