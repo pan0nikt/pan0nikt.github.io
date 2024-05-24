@@ -4,8 +4,8 @@ const context = canvas.getContext('2d');
 // Load images
 const birdImg = new Image();
 const saladImg = new Image();
-birdImg.src = '/path/to/Cycu.jpg'; // Make sure to provide the correct path
-saladImg.src = '/path/to/Sałatka.png'; // Use a URL to a salad image or a local path
+birdImg.src = '/pan0nikt.github.io/Cycu.jpg'; // Make sure to provide the correct path
+saladImg.src = '/pan0nikt.github.io/Sałatka.png'; // Use a URL to a salad image or a local path
 
 // Game variables
 let bird = { x: 50, y: 150, width: 40, height: 40, gravity: 1.5, lift: -25, velocity: 0 };
