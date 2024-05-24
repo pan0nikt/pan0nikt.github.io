@@ -1,61 +1,25 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Adrian Chujcieto - Personal Webpage</title>
+    <title>Flappy Prezes</title>
     <style>
         body {
-            font-family: Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
             margin: 0;
-            padding: 0;
-            background-color: #ffffff;
-            color: #000000;
+            background-color: #70c5ce;
         }
-
-        header {
-            background-color: #000000;
-            color: #ffffff;
-            padding: 20px;
-            text-align: center;
-        }
-
-        h1 {
-            margin-top: 0;
-        }
-
-        .content {
-            padding: 20px;
-        }
-
-        footer {
-            background-color: #000000;
-            color: #ffffff;
-            padding: 20px;
-            text-align: center;
+        canvas {
+            border: 1px solid #000;
         }
     </style>
 </head>
-
 <body>
-
-    <header>
-        <h1>Welcome to Adrian Chujcieto's Personal Webpage</h1>
-    </header>
-
-    <div class="content">
-        <h2>About Me</h2>
-        <p>Hello, I'm Adrian Chujcieto. I have a passion for cotton farming and enjoy working in the agricultural industry.</p>
-
-        <h2>Interests</h2>
-        <p>My primary interest is in cotton farming, but I also enjoy learning about various agricultural practices and techniques.</p>
-    </div>
-
-    <footer>
-        <p>Contact: adrian@example.com</p>
-    </footer>
-
+    <canvas id="gameCanvas" width="320" height="480"></canvas>
+    <script src="game.js"></script>
 </body>
-
 </html>
