@@ -10,7 +10,7 @@ body, html {
 }
 
 .background {
-  position: relative;
+  position: static;
   width: 100vw;
   height: 100vh;
   overflow: hidden;
@@ -56,34 +56,11 @@ body, html {
 }
 
 .stars {
-  position: absolute;
+  position: relative;
   top: 0;
   left: 0;
   width: 100%;
   height: 100%;
   background: radial-gradient(circle, transparent 10%, rgba(255, 255, 255, 0.5) 10%, rgba(255, 255, 255, 0.5) 20%, transparent 20%) repeat;
   background-size: 2px 2px;
-}
-
-/* Game container styles */
-#game-container {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  background: rgba(0, 0, 0, 0.8);
-  padding: 20px;
-  border-radius: 10px;
-}
-
-.hidden {
-  display: none;
-}
-
-#game-canvas {
-  background: #fff;
-  border: 2px solid #000;
 }
