@@ -23,3 +23,6 @@ function updateCountdown() {
 
 // Update the countdown every second
 const interval = setInterval(updateCountdown, 1000);
+
+// Initial call to display the countdown immediately
+updateCountdown();
