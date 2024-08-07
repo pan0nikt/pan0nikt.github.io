@@ -6,8 +6,8 @@ let clickCount = 0;
 const clicksNeeded = 10;
 
 // Paths to image assets
-const snakeHeadImgSrc = 'snake-head.png'; // Replace with actual path or URL
-const appleImgSrc = 'apple.png';   // Replace with actual path or URL
+const snakeHeadImgSrc = 'path/to/image1.png'; // Replace with actual path or URL
+const appleImgSrc = 'path/to/image2.png';   // Replace with actual path or URL
 
 let snakeHeadImg, appleImg;
 
