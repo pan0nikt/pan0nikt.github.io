@@ -1,18 +1,34 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Duhu Countdown</title>
-  <link rel="stylesheet" href="styles.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>cwel</title>
+    <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-  <div class="background">
-    <div id="earth-container">
-      <div id="earth"></div>
-      <div class="countdown" id="countdown"></div>
+    <div class="menu">
+        <h1>cwel</h1>
+        <button id="start-button">Start Game</button>
+        <button id="leaderboard-button">Leaderboard</button>
     </div>
-  </div>
-  <script src="script.js"></script>
+    
+    <div class="game-container" id="game-container">
+        <canvas id="gameCanvas"></canvas>
+        <div class="hud">
+            <span id="score">Score: 0</span>
+            <span id="time">Time: 15:00</span>
+        </div>
+    </div>
+
+    <div class="leaderboard" id="leaderboard">
+        <h2>Leaderboard</h2>
+        <ol id="leaderboard-list">
+            
+        </ol>
+        <button id="back-button">Back to Menu</button>
+    </div>
+
+    <script src="script.js"></script>
 </body>
 </html>
