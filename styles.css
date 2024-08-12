@@ -1,85 +1,110 @@
 body {
+    margin: 0;
+    padding: 0;
     display: flex;
     justify-content: center;
     align-items: center;
     height: 100vh;
-    margin: 0;
-    background-color: #000;
-    font-family: 'Arial', sans-serif;
+    background-color: #111;
+    font-family: Arial, sans-serif;
 }
 
-.container {
+.slot-machine-container {
     text-align: center;
-    color: white;
 }
 
 .slot-machine {
     display: flex;
-    justify-content: center;
-    margin-bottom: 20px;
+    justify-content: space-around;
+    background-color: #222;
     padding: 20px;
-    background: #222;
-    border-radius: 15px;
-    box-shadow: 0 0 20px rgba(0, 255, 0, 0.5), inset 0 0 10px rgba(255, 255, 255, 0.1);
+    border-radius: 20px;
+    border: 5px solid #444;
+    box-shadow: 0px 0px 20px #000;
 }
 
 .reel {
-    width: 120px;
-    height: 120px;
-    margin: 0 15px;
-    background: radial-gradient(circle, #fff, #bbb);
-    border-radius: 10px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    font-size: 3rem;
-    color: #222;
-    box-shadow: 0 0 15px rgba(255, 255, 255, 0.2);
+    width: 100px;
+    height: 150px;
     overflow: hidden;
+    background-color: #fff;
+    border: 3px solid #333;
+    border-radius: 10px;
     position: relative;
 }
 
-.reel::before {
-    content: "";
+.symbol-container {
+    display: flex;
+    flex-direction: column;
     position: absolute;
     top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background: linear-gradient(transparent, rgba(0, 0, 0, 0.5), transparent);
-    z-index: 1;
+    width: 100%;
+    transition: transform 1s cubic-bezier(0.25, 0.1, 0.25, 1);
 }
 
 .symbol {
-    position: absolute;
-    width: 100%;
-    height: 100%;
+    font-size: 70px;
+    height: 150px;
     display: flex;
     justify-content: center;
     align-items: center;
-    font-size: 3rem;
-    animation: spin 1s linear infinite;
 }
 
-button {
+#spinButton {
+    margin-top: 20px;
     padding: 15px 30px;
-    font-size: 1.5rem;
-    font-weight: bold;
+    font-size: 20px;
+    background-color: #444;
     color: #fff;
-    background: linear-gradient(45deg, #ff1e56, #ffac41);
     border: none;
     border-radius: 10px;
     cursor: pointer;
-    box-shadow: 0 0 10px rgba(255, 174, 0, 0.8);
-    transition: all 0.3s ease;
+    box-shadow: 0px 0px 10px #000;
+    transition: background-color 0.3s ease;
 }
 
-button:hover {
-    box-shadow: 0 0 20px rgba(255, 255, 0, 0.8);
-    transform: scale(1.1);
+#spinButton:hover {
+    background-color: #666;
+}
+.win-message {
+    margin-top: 20px;
+    font-size: 0px;
+    color: #ff0;
+    text-shadow: 0px 0px 20px #ff0;
+    font-weight: bold;
+    animation: none;
+    opacity: 0;
+    transition: all 0.5s ease-in-out;
 }
 
-@keyframes spin {
-    0% { transform: translateY(0); }
-    100% { transform: translateY(-600%); }
+@keyframes bigWinAnimation {
+    0%, 100% {
+        font-size: 0px;
+        opacity: 0;
+    }
+    50% {
+        font-size: 100px;
+        opacity: 1;
+    }
 }
+
+@keyframes jackpotAnimation {
+    0%, 100% {
+        font-size: 0px;
+        opacity: 0;
+    }
+    50% {
+        font-size: 150px;
+        color: #f00;
+        opacity: 1;
+    }
+}
+
+.show {
+    animation: bigWinAnimation 3s ease-in-out forwards;
+}
+
+.jackpot {
+    animation: jackpotAnimation 3s ease-in-out forwards;
+}
+
