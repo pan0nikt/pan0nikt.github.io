@@ -50,7 +50,7 @@ document.getElementById("spinButton").addEventListener("click", function() {
     const stopSymbol2 = symbols[Math.floor(Math.random() * symbols.length)];
     const stopSymbol3 = symbols[Math.floor(Math.random() * symbols.length)];
 
-    winMessage.className = '';  // Reset any previous animations
+    winMessage.className = '';  
 
     Promise.all([
         spinReel(reel1, duration1, stopSymbol1),
