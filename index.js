@@ -52,34 +52,24 @@ const ART = [
 ]
 
 const SEARCHES = [
-  'where should i bury the body',
-  'why does my eye twitch',
-  'why is my poop green',
-  'why do i feel so empty',
-  'why do i always feel hungry',
-  'why do i always have diarrhea',
-  'why does my anus itch',
-  'why does my belly button smell',
-  'why does my cat attack me',
-  'why does my dog eat poop',
-  'why does my fart smell so bad',
-  'why does my mom hate me',
-  'why does my pee smell bad',
-  'why does my poop float',
-  'proof that the earth is flat'
+  'azjatyckie porno',
+  'chińskie porno',
+  'zieniuk cwel',
+  'PingelOUT',
+  'PingelOUT',
+  'PingelOUT',
+  'PingelOUT',
+  'PingelOUT',
+  'PingelOUT'
 ]
 
 const VIDEOS = [
-  './static/albundy.mp4',
-  './static/badger.mp4',
-  './static/cat.mp4',
-  './static/hasan.mp4',
-  './static/heman.mp4',
-  './static/jozin.mp4',
-  './static/nyan.mp4',
-  './static/rickroll.mp4',
-  './static/space.mp4',
-  './static/trolol.mp4'
+  'zieniuk.mp4',
+  'zieniuk1.mp4',
+  'zieniuk2.mp4',
+  'zieniuk3.mp4',
+  'zieniuk4.mp4',
+  'zieniuk5.mp4'
 ]
 
 const FILE_DOWNLOADS = [
