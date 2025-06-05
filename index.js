@@ -15,12 +15,12 @@
 
 const SCREEN_WIDTH = window.screen.availWidth
 const SCREEN_HEIGHT = window.screen.availHeight
-const WIN_WIDTH = 480
-const WIN_HEIGHT = 360
+const WIN_WIDTH = 580
+const WIN_HEIGHT = 460
 const VELOCITY = 15
 const MARGIN = 15
-const TOP_MARGIN = 50
-const TICK_LENGTH = 50
+const TOP_MARGIN = 15
+const TICK_LENGTH = 55
 
 const HIDDEN_STYLE = 'position: fixed; width: 1px; height: 1px; overflow: hidden; top: -10px; left: -10px;'
 
