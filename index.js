@@ -86,7 +86,7 @@ const FILE_DOWNLOADS = [
 
 const PHRASES = [
   'Takiego Boxa',
-  'Blinker z domestosem',
+  'Jakub Zieniuk kandydat na prezydenta Rzeczypospolitej 2025',
   'Cwelniuk',
   'zwijaj klocki',
   'na pełnym',
