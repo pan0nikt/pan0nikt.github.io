@@ -1,26 +1,11 @@
-/* global Element */
-
-/**
- *  The Annoying Site
- *  https://theannoyingsite.com
- *
- *  Author:
- *    Feross Aboukhadijeh
- *    https://feross.org
- *
- *  Patreon:
- *    If you enjoyed this, please support me on Patreon!
- *    https://www.patreon.com/feross
- */
-
 const SCREEN_WIDTH = window.screen.availWidth
 const SCREEN_HEIGHT = window.screen.availHeight
-const WIN_WIDTH = 480
-const WIN_HEIGHT = 360
+const WIN_WIDTH = 580
+const WIN_HEIGHT = 460
 const VELOCITY = 15
 const MARGIN = 15
-const TOP_MARGIN = 50
-const TICK_LENGTH = 50
+const TOP_MARGIN = 15
+const TICK_LENGTH = 55
 
 const HIDDEN_STYLE = 'position: fixed; width: 1px; height: 1px; overflow: hidden; top: -10px; left: -10px;'
 
@@ -56,10 +41,6 @@ const SEARCHES = [
   'chińskie porno',
   'zieniuk cwel',
   'PingelOUT',
-  'PingelOUT',
-  'PingelOUT',
-  'PingelOUT',
-  'PingelOUT',
   'PingelOUT'
 ]
 
@@ -69,7 +50,12 @@ const VIDEOS = [
   'zieniuk2.mp4',
   'zieniuk3.mp4',
   'zieniuk4.mp4',
-  'zieniuk5.mp4'
+  'zieniuk5.mp4',
+  'zieniuk6.mp4',
+  
+  
+  
+  
 ]
 
 const FILE_DOWNLOADS = [
@@ -78,15 +64,15 @@ const FILE_DOWNLOADS = [
   'zieniuk2.jpg',
   'zieniuk3.jpg',
   'zieniuk4.jpg',
-  'zieniuk5.jpg',
+  'zieniuk5.jpg'
   'zieniuk6.jpg',
   'zieniuk7.jpg',
-  'zieniuk8.png'
+  'zieniuk8.jpg',
 ]
 
 const PHRASES = [
   'Takiego Boxa',
-  'Blinker z domestosem',
+  'Jakub Zieniuk kandydat na prezydenta Rzeczypospolitej 2025',
   'Cwelniuk',
   'zwijaj klocki',
   'na pełnym',
