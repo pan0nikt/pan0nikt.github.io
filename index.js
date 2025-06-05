@@ -56,20 +56,13 @@ const SEARCHES = [
   'chińskie porno',
   'zieniuk cwel',
   'PingelOUT',
-  'PingelOUT',
-  'PingelOUT',
-  'PingelOUT',
-  'PingelOUT',
   'PingelOUT'
 ]
 
 const VIDEOS = [
   'zieniuk.mp4',
   'zieniuk1.mp4',
-  'zieniuk2.mp4',
-  'zieniuk3.mp4',
-  'zieniuk4.mp4',
-  'zieniuk5.mp4'
+  'zieniuk2.mp4'
 ]
 
 const FILE_DOWNLOADS = [
@@ -78,10 +71,7 @@ const FILE_DOWNLOADS = [
   'zieniuk2.jpg',
   'zieniuk3.jpg',
   'zieniuk4.jpg',
-  'zieniuk5.jpg',
-  'zieniuk6.jpg',
-  'zieniuk7.jpg',
-  'zieniuk8.png'
+  'zieniuk5.jpg'
 ]
 
 const PHRASES = [
