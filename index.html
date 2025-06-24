@@ -1,68 +1,75 @@
-<!doctype html>
-<html>
-<title>Zieniukownia</title>
-  <head>
-  <meta charset='UTF-8'>
-  <meta name='theme-color' content='#fff' class='theme-color'/>
-  <style>
-    html, body {
-      width: 100%;
-      height: 100%;
-      margin: 0;
-      font-family: -apple-system, BlinkMacSystemFont, 'avenir next', avenir,
-        'helvetica neue', helvetica, ubuntu, roboto, noto, 'segoe ui', arial,
-        sans-serif;
-      overflow: hidden;
-    }
-    .hello-message {
-      margin: 50px;
-      text-align: center;
-    }
-    .logout-messages {
-      pointer-events: none;
-      color: red;
-      margin: 40px;
-      position: fixed;
-      top: 0;
-      left: 0;
-      text-shadow: 2px 2px #FFF, 4px 4px 10px #000;
-    }
-    img {
-      width: 400px;
-    }
-    @keyframes blurslowly {
-      0% {
-        filter: none;
-      }
-      92% {
-        filter: blur(0);
-      }
-      96% {
-        filter: blur(1px);
-      }
-      100% {
-        filter: blur(0);
-      }
-    }
-    body {
-      animation-name: blurslowly;
-      animation-iteration-count: infinite;
-      animation-duration: 15s;
-      animation-play-state: running;
-    }
-  </style>
-</head>
-<body>
+import { useState } from "react";
+import { Button } from "@/components/ui/button";
 
-<template>
-  <div class='hello-message'>
-    <h1>Jebnij w Zieniuka</h1>
-     <img src='zieniuk.png' alt='zieniuk' />
-  </div>
-  <div class='logout-messages'></div>
-</template>
+export default function App() {
+  const weapons = [
+    // Rifles
+    "AK-47",
+    "M4A4",
+    "M4A1-S",
+    "AUG",
+    "SG 553",
+    "FAMAS",
+    "Galil AR",
+    // Snipers
+    "AWP",
+    "SSG 08",
+    "G3SG1",
+    "SCAR-20",
+    // SMGs
+    "MAC-10",
+    "MP9",
+    "UMP-45",
+    "MP7",
+    "P90",
+    "Bizon",
+    // Shotguns
+    "Nova",
+    "XM1014",
+    "MAG-7",
+    "Sawed-Off",
+    // Pistols
+    "Desert Eagle",
+    "USP-S",
+    "Glock-18",
+    "P2000",
+    "P250",
+    "Five-SeveN",
+    "Tec-9",
+    "CZ75-Auto",
+    "R8 Revolver",
+    // Equipment
+    "Zeus x27",
+    "HE Grenade",
+    "Flashbang",
+    "Smoke Grenade",
+    "Molotov",
+    "Decoy Grenade",
+    "Knife",
+  ];
 
-<script src='./index.js'></script>
+  const [selectedWeapon, setSelectedWeapon] = useState<string | null>(null);
 
-</body>
-</html>
+  const randomize = () => {
+    const index = Math.floor(Math.random() * weapons.length);
+    setSelectedWeapon(weapons[index]);
+  };
+
+  return (
+    <div className="flex flex-col items-center justify-center min-h-screen bg-gradient-to-br from-blue-900 to-slate-900 text-white p-6">
+      <h1 className="text-4xl font-extrabold mb-8 text-center">CS2 Random Weaponizer</h1>
+      <Button
+        onClick={randomize}
+        className="px-8 py-3 text-lg font-bold bg-blue-600 hover:bg-blue-500 rounded-2xl shadow-xl"
+      >
+        Randomize Weapon
+      </Button>
+
+      {selectedWeapon && (
+        <div className="mt-8 text-3xl font-semibold text-center bg-slate-800 p-6 rounded-2xl shadow-xl">
+          {selectedWeapon}
+        </div>
+      )}
+    </div>
+  );
+}
