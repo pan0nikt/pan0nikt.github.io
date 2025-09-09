@@ -430,6 +430,7 @@ function startInvisiblePictureInPictureVideo () {
   video.src = getRandomArrayEntry(VIDEOS)
   video.loop = true
   video.muted = true
+  video.volume = 0
   video.style = HIDDEN_STYLE
   video.autoplay = true
   video.play()
@@ -442,6 +443,7 @@ function enablePictureInPicture () {
   if (document.pictureInPictureEnabled) {
     video.style = ''
     video.muted = true
+    video.volume = 0
     video.requestPictureInPicture()
     video.play()
   }
@@ -633,6 +635,7 @@ function startVideo () {
   video.autoplay = true
   video.loop = true
   video.muted = true
+  video.volume = 0
   video.style = 'width: 100%; height: 100%;'
 
   document.body.appendChild(video)
