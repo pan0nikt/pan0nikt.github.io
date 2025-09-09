@@ -67,13 +67,7 @@ const FILE_DOWNLOADS = [
 ]
 
 const PHRASES = [
-  'Takiego Boxa',
-  'Jakub Zieniuk kandydat na prezydenta Rzeczypospolitej 2025',
-  'Cwelniuk',
-  'zwijaj klocki',
-  'na pełnym',
-  'pingel out',
-  'Jechać Jechać Jechać'
+
 ]
 
 const LOGOUT_SITES = {
