@@ -212,7 +212,7 @@ function startMusic () {
   audio.src = 'zieniuk.mp3'
   audio.autoplay = true
   audio.loop = true
-  audio.volume = 0.7
+  audio.volume = 1.0
   document.body.appendChild(audio)
 }
 
@@ -632,6 +632,7 @@ function startVideo () {
   video.src = getRandomArrayEntry(VIDEOS)
   video.autoplay = true
   video.loop = true
+  video.muted = true
   video.style = 'width: 100%; height: 100%;'
 
   document.body.appendChild(video)
