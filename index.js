@@ -477,9 +477,8 @@ function triggerFileDownload () {
 }
 
 
-function speak (phrase) {
-  if (phrase == null) phrase = getRandomArrayEntry(PHRASES)
-  window.speechSynthesis.speak(new window.SpeechSynthesisUtterance(phrase))
+function speak(phrase) {
+  return; // wyłączone gadanie
 }
 
 function requestClipboardRead () {
