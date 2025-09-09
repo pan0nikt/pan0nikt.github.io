@@ -441,7 +441,7 @@ function enablePictureInPicture () {
   const video = document.querySelector('video')
   if (document.pictureInPictureEnabled) {
     video.style = ''
-    video.muted = false
+    video.muted = true
     video.requestPictureInPicture()
     video.play()
   }
