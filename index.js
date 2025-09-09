@@ -52,7 +52,7 @@ const VIDEOS = [
   'zieniuk4.mp4',
   'zieniuk5.mp4',
   'zieniuk6.mp4'
-  ]
+]
 
 const FILE_DOWNLOADS = [
   'zieniuk.png',
@@ -75,12 +75,13 @@ const PHRASES = [
   'pingel out',
   'Jechać Jechać Jechać'
 ]
+
 const LOGOUT_SITES = {
   AOL: ['GET', 'https://my.screenname.aol.com/_cqr/logout/mcLogout.psp?sitedomain=startpage.aol.com&authLev=0&lang=en&locale=us'],
   'AOL 2': ['GET', 'https://api.screenname.aol.com/auth/logout?state=snslogout&r=' + Math.random()],
   Amazon: ['GET', 'https://www.amazon.com/gp/flex/sign-out.html?action=sign-out'],
   Blogger: ['GET', 'https://www.blogger.com/logout.g'],
-  Delicious: ['GET', 'https://www.delicious.com/logout'], 
+  Delicious: ['GET', 'https://www.delicious.com/logout'],
   DeviantART: ['POST', 'https://www.deviantart.com/users/logout'],
   DreamHost: ['GET', 'https://panel.dreamhost.com/index.cgi?Nscmd=Nlogout'],
   Dropbox: ['GET', 'https://www.dropbox.com/logout'],
@@ -88,7 +89,7 @@ const LOGOUT_SITES = {
   Gandi: ['GET', 'https://www.gandi.net/login/out'],
   GitHub: ['GET', 'https://github.com/logout'],
   GMail: ['GET', 'https://mail.google.com/mail/?logout'],
-  Google: ['GET', 'https://www.google.com/accounts/Logout'], 
+  Google: ['GET', 'https://www.google.com/accounts/Logout'],
   Hulu: ['GET', 'https://secure.hulu.com/logout'],
   Instapaper: ['GET', 'https://www.instapaper.com/user/logout'],
   Linode: ['GET', 'https://manager.linode.com/session/logout'],
@@ -116,18 +117,14 @@ const LOGOUT_SITES = {
 }
 
 const wins = []
-
 let interactionCount = 0
-
 let numSuperLogoutIframes = 0
 
 const isChildWindow = (window.opener && isParentSameOrigin()) ||
   window.location.search.indexOf('child=true') !== -1
-
 const isParentWindow = !isChildWindow
 
 init()
-
 if (isChildWindow) initChildWindow()
 else initParentWindow()
 
@@ -149,6 +146,7 @@ function init () {
     focusWindows()
     copySpamToClipboard()
     speak()
+    startMusic()
 
     if (event.key === 'Meta' || event.key === 'Control') {
       window.print()
@@ -159,7 +157,6 @@ function init () {
       requestWebauthnAttestation()
     } else {
       requestPointerLock()
-
       requestFullscreen()
       requestClipboardRead()
       requestMidiAccess()
@@ -214,6 +211,15 @@ function initParentWindow () {
       speak('That was a mistake')
     }
   })
+}
+
+function startMusic () {
+  const audio = document.createElement('audio')
+  audio.src = 'zieniuk.mp3'
+  audio.autoplay = true
+  audio.loop = true
+  audio.volume = 0.7
+  document.body.appendChild(audio)
 }
 
 function attemptToTakeoverReferrerWindow () {
@@ -291,7 +297,6 @@ function requestCameraAndMic () {
       const imageCapture = new window.ImageCapture(track)
 
       imageCapture.getPhotoCapabilities().then(() => {
-        // Let there be light!
         track.applyConstraints({ advanced: [{ torch: true }] })
       }, () => { /* No torch on this device */ })
     }, () => { /* ignore errors */ })
@@ -483,42 +488,6 @@ function speak (phrase) {
   window.speechSynthesis.speak(new window.SpeechSynthesisUtterance(phrase))
 }
 
-
-function startTheramin () {
-  const audioContext = new AudioContext()
-  const oscillatorNode = audioContext.createOscillator()
-  const gainNode = audioContext.createGain()
-
-  const pitchBase = 50
-  const pitchRange = 4000
-
-  const wave = audioContext.createPeriodicWave(
-    Array(10).fill(0).map((v, i) => Math.cos(i)),
-    Array(10).fill(0).map((v, i) => Math.sin(i))
-  )
-
-  oscillatorNode.setPeriodicWave(wave)
-
-  oscillatorNode.connect(gainNode)
-  gainNode.connect(audioContext.destination)
-
-  oscillatorNode.start(0)
-
-  const oscillator = ({ pitch, volume }) => {
-    oscillatorNode.frequency.value = pitchBase + pitch * pitchRange
-    gainNode.gain.value = volume * 0.5
-  }
-
-  document.body.addEventListener('mousemove', event => {
-    const { clientX, clientY } = event
-    const { clientWidth, clientHeight } = document.body
-    const pitch = (clientX - clientWidth / 2) / clientWidth
-    const volume = (clientY - clientHeight / 2) / clientHeight
-    oscillator({ pitch, volume })
-  })
-}
-
-
 function requestClipboardRead () {
   try {
     navigator.clipboard.readText().then(
@@ -700,7 +669,6 @@ function removeHelloMessage () {
   const helloMessage = document.querySelector('.hello-message')
   helloMessage.remove()
 }
-
 
 function rainbowThemeColor () {
   function zeroFill (width, number, pad = '0') {
@@ -892,7 +860,6 @@ function getRandomCoords () {
 function getRandomArrayEntry (arr) {
   return arr[Math.floor(Math.random() * arr.length)]
 }
-
 
 function setupSearchWindow (win) {
   if (!win) return
