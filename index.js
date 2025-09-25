@@ -37,8 +37,6 @@ const ART = [
 ]
 
 const SEARCHES = [
-  'azjatyckie porno',
-  'chińskie porno',
   'zieniuk',
   'PingelOUT',
   'PingelOUT'
