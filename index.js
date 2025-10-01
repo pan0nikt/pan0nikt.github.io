@@ -51,7 +51,8 @@ const VIDEOS = [
   'zieniuk3.mp4',
   'zieniuk4.mp4',
   'zieniuk5.mp4',
-  'zieniuk6.mp4'
+  'zieniuk6.mp4',
+  'prezes2025.png'
 ]
 
 const FILE_DOWNLOADS = [
